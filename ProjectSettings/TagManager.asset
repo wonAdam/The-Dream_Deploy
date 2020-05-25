@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Floor
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -13,16 +15,16 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Floor 1
+  - Floor 2
+  - Floor 3
+  - Floor 4
+  - Projectile 1
+  - Projectile 2
+  - Projectile 3
+  - Projectile 4
+  - Player
+  - Enemy
   - 
   - 
   - 

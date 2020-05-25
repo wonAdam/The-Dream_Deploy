@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 5424276718950297987}
   - component: {fileID: 5424276718950298012}
   - component: {fileID: 5424276718950298013}
+  - component: {fileID: 6423718282347393906}
+  - component: {fileID: 3831792539625846664}
   m_Layer: 0
   m_Name: Belt
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,12 +99,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 8d82e1bb4ef19274e80d42829b19945c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &5424276718950298013
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -119,3 +121,30 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.47
+--- !u!114 &6423718282347393906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424276718950297984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c92e057e18a9584b969b0c72338f469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyAfterFloorCollision: 3
+  speed: 6
+--- !u!114 &3831792539625846664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424276718950297984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7013a3178c2514f4eabfbad648ace5f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10

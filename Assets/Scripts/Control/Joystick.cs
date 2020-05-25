@@ -5,15 +5,19 @@ using UnityEngine.EventSystems;
 
 namespace ADAM.Control
 {
-    public class Joystick : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+    public class Joystick : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IEnableByPhase
     {
         [SerializeField] float DistanceFromCenter = 150f;
         [SerializeField] GameObject handle = null;
         [SerializeField] GameObject JoystickGO = null;
+
+        // todo Observer Pattern
+        public bool isEnabled = true; // After Tutorial, should be true. After Battle, should be false
         private Camera mainCam;
         private Vector2 initTouchPos;
         private PlayerController playerController;
         private Vector2 mouseWorldPos;
+
         
         void Start()
         {
@@ -24,7 +28,8 @@ namespace ADAM.Control
         
         private void Update() 
         {
-            playerController.ProcessMovement(mouseWorldPos - initTouchPos);
+            if(isEnabled)
+                playerController.ProcessMovement(mouseWorldPos - initTouchPos);
         }
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -50,7 +55,16 @@ namespace ADAM.Control
             JoystickGO.SetActive(false);
         }
 
+        public void StartActing()
+        {
+                    // todo Observer Pattern
 
+        }
 
+        public void StopActing()
+        {
+                    // todo Observer Pattern
+
+        }
     }
 }

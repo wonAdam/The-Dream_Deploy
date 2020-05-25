@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using ADAM.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+
 
 namespace ADAM.Combat
 {
@@ -10,29 +12,37 @@ namespace ADAM.Combat
     {
         [SerializeField] int maxHealth = 100;
         [SerializeField] bool damageTakingDelayEnabled = true;
-        List<Image> healthUIs;
-        int currHealth;
+        [SerializeField] int blinkingCount = 20;
+        [SerializeField] float blinkingEffectDuration = 2f;
+        [SerializeField] bool isPlayer = false;
+        public List<Image> healthUIs;
+        public int currHealth;
+        SpriteRenderer mySR;
+        Rigidbody2D myRb;
+        HealthUI healthUI;
 
-        // Start is called before the first frame update
         void Start()
         {
             currHealth = maxHealth;
-            HeartUI[] hearts = FindObjectsOfType<HeartUI>();
-            for(int i = 0 ; i < hearts.Length; i++)
+            mySR = GetComponent<SpriteRenderer>();
+            myRb = GetComponent<Rigidbody2D>();
+            healthUI = FindObjectOfType<HealthUI>();
+            if(healthUI != null)
             {
-                for(int j = 0 ; j <hearts.Length; j++)
-                {
-                    if(hearts[j].index == i) healthUIs.Add(hearts[j].GetComponent<Image>());
-                }
+                healthUI.SetMaxHealth(maxHealth);
             }
         }
 
         public bool TakeDamage(int damage)
         {
-            if(damageTakingDelayEnabled) return false;
+            if(!damageTakingDelayEnabled) return false;
 
             currHealth = Mathf.Max(currHealth - damage, 0);
-            UpdateHealthUI();
+            StartCoroutine(DamageTakingEffect());
+
+            if(isPlayer)
+                healthUI.UpdateHealthUI(currHealth);
+
             if(currHealth == 0)
             {
                 // Death Process
@@ -40,25 +50,25 @@ namespace ADAM.Combat
             return true;
         }
 
-        private void UpdateHealthUI()
+        public void PushedBack(Vector2 attackerPos)
         {
-            int healthPerHeart = maxHealth / healthUIs.Count;
-
-            int healthCache = currHealth;
-            for(int i = 0 ; i < healthUIs.Count; i++)
-            {
-                if(healthCache >= healthPerHeart)
-                {
-                    healthCache -= healthPerHeart;
-                    healthUIs[i].fillAmount = 1f;
-                }
-                else
-                {
-                    healthUIs[i].fillAmount = healthCache / (float)healthPerHeart;
-                    healthCache = 0;
-                }
-                
-            }
+            Vector2 dir = (Vector2)transform.position - attackerPos;
+            myRb.AddForce(dir * 200f);
         }
+
+        private IEnumerator DamageTakingEffect()
+        {
+            damageTakingDelayEnabled = false;
+            for(int i = 0 ; i < blinkingCount; i++)
+            {
+                mySR.DOFade(0f, blinkingEffectDuration / blinkingCount / 2f);
+                yield return new WaitForSeconds(blinkingEffectDuration / blinkingCount / 2f);
+                mySR.DOFade(1f, blinkingEffectDuration / blinkingCount / 2f);
+                yield return new WaitForSeconds(blinkingEffectDuration / blinkingCount / 2f);
+            }
+            damageTakingDelayEnabled = true;
+        }
+
+
     }
 }

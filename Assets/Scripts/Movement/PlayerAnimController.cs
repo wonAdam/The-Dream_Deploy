@@ -6,7 +6,7 @@ namespace ADAM.Movement
 {
     public class PlayerAnimController : MonoBehaviour
     {
-        enum DIRECTION{
+        public enum DIRECTION{
             RIGHT, LEFT, UP, DOWN
         }
         DIRECTION currDir = DIRECTION.DOWN;
@@ -24,8 +24,6 @@ namespace ADAM.Movement
             }
             
             float angle = Vector2.SignedAngle(Vector2.right, dir);
-
-            Debug.Log(angle);
             if(angle/90f > -0.5f && angle/90f < 0.5f) // right
             {
                 if(currDir != DIRECTION.RIGHT)

@@ -11,7 +11,14 @@ namespace ADAM.Combat
             {
                 if(other.GetComponent<Health>().TakeDamage(damage))
                 {
+                    Debug.Log("TriggerEnter " + gameObject.name);
                     // if it's projectile then dissapear
+                    if(this.gameObject.tag == "Projectile")
+                    {
+                        other.GetComponent<Health>().PushedBack(transform.position);
+                        Destroy(gameObject);
+                    }
+                        
 
                     // or it's enemy then do something else
 
@@ -19,22 +26,5 @@ namespace ADAM.Combat
             }
         }
 
-        private void OnCollisionEnter2D(Collision2D other) {
-            if(other.gameObject.tag == "Player")
-            {
-                if(other.transform.GetComponent<Health>().TakeDamage(damage))
-                {
-                    // if it's projectile then dissapear
-
-                    // or it's enemy then do something else
-
-                }
-            }
-
-            if(other.gameObject.tag == "Floor")
-            {
-                Destroy(gameObject, 3f);
-            }        
-        }
     }
 }

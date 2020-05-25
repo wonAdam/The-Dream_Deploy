@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace ADAM.UI
 {
-    public class Timer : MonoBehaviour
+    public class Timer : MonoBehaviour, IEnableByPhase
     {
         [SerializeField] float startTime = 60f;
         float currTime;
