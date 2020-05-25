@@ -168,5 +168,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startTime: 40
+  timerEndEvent: {fileID: 11400000, guid: 28a3f9bec2124234296501a50726a3c9, type: 2}
   timeTxt: {fileID: 0}
   timerEnabled: 1

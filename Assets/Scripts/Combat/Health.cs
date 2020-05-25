@@ -15,6 +15,7 @@ namespace ADAM.Combat
         [SerializeField] int blinkingCount = 20;
         [SerializeField] float blinkingEffectDuration = 2f;
         [SerializeField] bool isPlayer = false;
+        public EventObject playerDeadEvent;
         public List<Image> healthUIs;
         public int currHealth;
         SpriteRenderer mySR;
@@ -46,6 +47,10 @@ namespace ADAM.Combat
             if(currHealth == 0)
             {
                 // Death Process
+                if(isPlayer)
+                {
+                    playerDeadEvent.OnOccure();
+                }
             }
             return true;
         }

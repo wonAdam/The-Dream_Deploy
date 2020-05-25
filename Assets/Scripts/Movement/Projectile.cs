@@ -53,10 +53,9 @@ namespace ADAM.Movement
         
         private void SetRandomCollisionFloor()
         {
-            if(myRb.gravityScale < Mathf.Epsilon) return;
+            if(myRb.gravityScale < Mathf.Epsilon) { gameObject.layer = LayerMask.NameToLayer("Projectile 0"); return; }
 
             int rand = Random.Range(LayerMask.NameToLayer("Projectile 1"), LayerMask.NameToLayer("Projectile 4") + 1);
-
             gameObject.layer = rand;
 
         }
