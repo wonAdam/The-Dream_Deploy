@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ADAM.Core;
 using UnityEngine;
 using UnityEngine.UI;
 namespace ADAM.UI

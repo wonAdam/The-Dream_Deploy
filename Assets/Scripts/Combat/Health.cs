@@ -49,7 +49,7 @@ namespace ADAM.Combat
                 // Death Process
                 if(isPlayer)
                 {
-                    playerDeadEvent.OnOccure();
+                    playerDeadEvent?.OnOccure();
                 }
             }
             return true;

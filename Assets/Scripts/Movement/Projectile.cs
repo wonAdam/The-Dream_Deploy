@@ -10,10 +10,22 @@ namespace ADAM.Movement
         Rigidbody2D myRb;
         float dir = 0f;
         bool velocityEnabled = true;
+        public List<Floor> floors = new List<Floor>();
 
 
         private void Start() {
             myRb = GetComponent<Rigidbody2D>();
+            Floor[] floorsTmp = FindObjectsOfType<Floor>();
+
+            for(int i = 0 ; i < floorsTmp.Length; i++)
+            {
+                for(int j = 0; j < floorsTmp.Length; j++)
+                {
+                    string floorLayerName = "Floor " + (i+1).ToString();
+                    if(floorsTmp[j].gameObject.layer == LayerMask.NameToLayer(floorLayerName))
+                        floors.Add(floorsTmp[j]);
+                }
+            }
             SetDir();
             SetRandomProjType();
             SetRandomCollisionFloor();
@@ -38,6 +50,13 @@ namespace ADAM.Movement
         {
             int type = Random.Range(0,2);
 
+
+            Debug.Log(LayerMask.NameToLayer("Floor 4"));
+            if(floors.Find(x=>{ return x.gameObject.layer == LayerMask.NameToLayer("Floor 4"); }).transform.position.y >= transform.position.y)
+            {
+                myRb.gravityScale = 0f; return;
+            }
+
             if(type == 0) // type == Straight
             {
                 myRb.gravityScale = 0f;
@@ -55,8 +74,17 @@ namespace ADAM.Movement
         {
             if(myRb.gravityScale < Mathf.Epsilon) { gameObject.layer = LayerMask.NameToLayer("Projectile 0"); return; }
 
-            int rand = Random.Range(LayerMask.NameToLayer("Projectile 1"), LayerMask.NameToLayer("Projectile 4") + 1);
-            gameObject.layer = rand;
+            List<int> possibleFloors = new List<int>();
+            for(int i = 0 ; i < floors.Count; i++)
+            {
+                if(transform.position.y > floors[i].transform.position.y)
+                    possibleFloors.Add(i);
+            }
+
+            int rand = Random.Range(0, possibleFloors.Count);
+            string projLayerName = "Projectile " + (possibleFloors[rand]+1).ToString();
+
+            gameObject.layer = LayerMask.NameToLayer(projLayerName);
 
         }
 

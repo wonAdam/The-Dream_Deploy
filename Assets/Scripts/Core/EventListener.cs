@@ -9,11 +9,13 @@ public class EventListener : MonoBehaviour
     public UnityEvent response; 
 
     private void OnEnable() {
-        gEvent.Register(this);
+        if(gEvent != null)
+            gEvent.Register(this);
     }
 
     private void OnDisable() {
-        gEvent.UnRegister(this);
+        if(gEvent != null)
+            gEvent.UnRegister(this);
     }
 
     public void InvokeResponses()
