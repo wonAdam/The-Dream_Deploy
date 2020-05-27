@@ -15,6 +15,8 @@ namespace ADAM.Combat
         [SerializeField] int blinkingCount = 20;
         [SerializeField] float blinkingEffectDuration = 2f;
         [SerializeField] bool isPlayer = false;
+        [SerializeField] bool isBoss = false;
+        public int damageCount = 0;
         public EventObject playerDeadEvent;
         public List<Image> healthUIs;
         public int currHealth;
@@ -28,7 +30,7 @@ namespace ADAM.Combat
             mySR = GetComponent<SpriteRenderer>();
             myRb = GetComponent<Rigidbody2D>();
             healthUI = FindObjectOfType<HealthUI>();
-            if(healthUI != null)
+            if(healthUI != null && isPlayer)
             {
                 healthUI.SetMaxHealth(maxHealth);
             }
@@ -44,6 +46,12 @@ namespace ADAM.Combat
             if(isPlayer)
                 healthUI.UpdateHealthUI(currHealth);
 
+            if(isBoss)
+            {
+                damageCount++;
+            }
+            
+
             if(currHealth == 0)
             {
                 // Death Process
@@ -51,7 +59,14 @@ namespace ADAM.Combat
                 {
                     playerDeadEvent?.OnOccure();
                 }
+                if(isBoss)
+                {
+
+                }
             }
+
+            
+
             return true;
         }
 

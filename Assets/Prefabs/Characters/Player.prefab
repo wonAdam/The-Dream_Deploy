@@ -193,11 +193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54267e890781d24a80b22fac5869899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 10
   damageTakingDelayEnabled: 1
   blinkingCount: 20
   blinkingEffectDuration: 2
-  isPlayer: 0
+  isPlayer: 1
   playerDeadEvent: {fileID: 11400000, guid: 9ba2a80de6fa2a249929664f54905d49, type: 2}
   healthUIs: []
   currHealth: 0

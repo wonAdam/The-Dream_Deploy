@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2215041659326232356, guid: bd5b23bb1f2ffb346b063ff5322eae40,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyAfterFloorCollision: 3
   speed: 6
+  floors: []

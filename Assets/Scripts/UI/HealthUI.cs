@@ -7,7 +7,7 @@ namespace ADAM.UI
     public class HealthUI : MonoBehaviour {
         public HeartUI[] heartUIs;
         public List<Image> heartUIsImage;
-        int maxHealth;
+        public int maxHealth;
 
 
         private void Start() {
