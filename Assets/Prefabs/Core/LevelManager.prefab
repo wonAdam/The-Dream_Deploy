@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8be18eeb7948d3429aba943e248b023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gEvent: {fileID: 0}
+  gEvent: {fileID: 11400000, guid: cc493d4af520bfc42b42a55ccfc0944f, type: 2}
   response:
     m_PersistentCalls:
       m_Calls: []

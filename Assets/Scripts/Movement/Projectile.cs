@@ -81,6 +81,12 @@ namespace ADAM.Movement
                     possibleFloors.Add(i);
             }
 
+            if(possibleFloors.Count < 1)
+            {
+                myRb.gravityScale = 0f;
+                gameObject.layer = LayerMask.NameToLayer("Projectile 0"); return;            
+            }
+
             int rand = Random.Range(0, possibleFloors.Count);
             string projLayerName = "Projectile " + (possibleFloors[rand]+1).ToString();
 
