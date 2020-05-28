@@ -11,6 +11,7 @@ namespace ADAM.Movement
         }
         DIRECTION currDir = DIRECTION.DOWN;
         Animator myAnim;
+        [SerializeField] Transform gun;
         private void Start() {
             myAnim = GetComponent<Animator>();
         }
@@ -33,6 +34,9 @@ namespace ADAM.Movement
                 }
                 myAnim.SetInteger("XDir", 1);
                 myAnim.SetInteger("YDir", 0);     
+
+                gun.localEulerAngles = new Vector3(0f,0f,0f);
+                gun.localPosition = new Vector2(0.5f, 0f);
             }
             else if(angle/90f > 0.5f && angle/90f < 1.5f) // up
             {
@@ -43,7 +47,9 @@ namespace ADAM.Movement
                 }            
                 myAnim.SetInteger("XDir", 0);
                 myAnim.SetInteger("YDir", 1);  
-                            
+
+                gun.localEulerAngles = new Vector3(0f,0f,90f);
+                gun.localPosition = new Vector2(0f, 0.5f);            
             }
             else if((angle/90f > 1.5f && angle/90f < 2f) || (angle/90f >= -2f && angle/90f < -1.5f)) // left
             {
@@ -54,7 +60,9 @@ namespace ADAM.Movement
                 }            
                 myAnim.SetInteger("XDir", -1);
                 myAnim.SetInteger("YDir", 0);    
-                            
+
+                gun.localEulerAngles = new Vector3(0f,0f,180f);
+                gun.localPosition = new Vector2(-0.5f, 0f);                
             }
             else if(angle/90f < -0.5f && angle/90f > -1.5f) // down
             {
@@ -65,7 +73,9 @@ namespace ADAM.Movement
                 }            
                 myAnim.SetInteger("XDir", 0);
                 myAnim.SetInteger("YDir", -1);  
-                            
+
+                gun.localEulerAngles = new Vector3(0f,0f,-90f);
+                gun.localPosition = new Vector2(0f, -0.5f);                 
             }
     
         }

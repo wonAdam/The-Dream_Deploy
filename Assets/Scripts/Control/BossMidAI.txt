@@ -1,4 +1,21 @@
 tree("Root")
 	fallback
-		Idle
-		MoveTowardPlayer
+		while IsStateChasing
+			MoveTowardPlayer		
+		tree("Rush")
+
+
+tree("Rush")
+	fallback
+		while IsStateRushReady
+			sequence
+				RushReadyAnimation
+				Wait 1.5
+				StateToRush
+		while IsStateRushing
+			RushToDestinationPosition
+		while IsStateIdling
+			sequence
+				Idle
+				Wait 2.0
+				StateToChase

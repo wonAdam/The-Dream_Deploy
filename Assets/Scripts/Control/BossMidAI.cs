@@ -9,8 +9,17 @@ namespace ADAM.Control
 {
     public class BossMidAI : MonoBehaviour
     {
+        public enum AI_STATE{
+            CHASING, RUSHREADY, RUSHING, IDLE
+        }
+        public AI_STATE currentAI_State = AI_STATE.CHASING;
         [SerializeField] int idleDamageCountCondition = 20;
         [SerializeField] float idleDuration = 2f;
+        [SerializeField] float rushToRushDuration_Min = 5f;
+        [SerializeField] float rushToRushDuration_Max = 10f;
+        public float tikTokUntilRush = 0f;
+        private float currWaitTillRush = -1f;
+        Vector2 rushDestination;
         private Animator animator;
         private Mover mover;
         private PlayerController playerController;
@@ -20,6 +29,90 @@ namespace ADAM.Control
             animator = GetComponent<Animator>();
             playerController = FindObjectOfType<PlayerController>();
             mover = GetComponent<Mover>();
+
+            tikTokUntilRush = Random.Range(rushToRushDuration_Min, rushToRushDuration_Max);
+        }
+
+        private void Update() {
+            if(IsStateChasing())
+            {
+                TikTokToRush();
+            }
+        }
+        private void TikTokToRush()
+        {
+            currWaitTillRush += Time.deltaTime;
+
+            if(tikTokUntilRush <= currWaitTillRush)
+            {
+                currWaitTillRush = 0f;
+                currentAI_State = AI_STATE.RUSHREADY;
+            }
+        }
+
+        [Task]
+        public void RushReadyAnimation()
+        {
+            rushDestination = playerController.transform.position;
+            animator.SetTrigger("RushReady");
+            mover.Stop();
+            Task.current.Succeed();
+        }
+
+        [Task]
+        public void StateToRush()
+        {
+            currentAI_State = AI_STATE.RUSHING;
+            Task.current.Succeed();
+        }
+
+        [Task]
+        public void StateToChase()
+        {
+            tikTokUntilRush = Random.Range(rushToRushDuration_Min, rushToRushDuration_Max);
+            currentAI_State = AI_STATE.CHASING;
+            Task.current.Succeed();
+        }
+
+        [Task]
+        public void RushToDestinationPosition()
+        {
+            Vector2 dir_power = rushDestination - (Vector2)transform.position;
+            mover.MoveTo(dir_power * 10f);
+
+            if(dir_power.magnitude <= 0.1f)
+                currentAI_State = AI_STATE.IDLE;
+
+            Task.current.Succeed();
+        }
+
+
+        [Task]
+        public bool IsStateChasing()
+        {
+            if(currentAI_State == AI_STATE.CHASING) return true;
+            else return false;
+        }
+
+        [Task]
+        public bool IsStateRushReady()
+        {
+            if(currentAI_State == AI_STATE.RUSHREADY) return true;
+            else return false;
+        }
+
+        [Task]
+        public bool IsStateRushing()
+        {
+            if(currentAI_State == AI_STATE.RUSHING) return true;
+            else return false;
+        }
+
+        [Task]
+        public bool IsStateIdling()
+        {
+            if(currentAI_State == AI_STATE.IDLE) return true;
+            else return false;
         }
 
         [Task]
@@ -35,24 +128,8 @@ namespace ADAM.Control
         [Task]
         public void Idle()
         {
-
-            if(GetComponent<Health>().damageCount > idleDamageCountCondition)
-            {
-                idleTikTok += Time.deltaTime;
-
-                if(idleTikTok >= idleDuration)
-                {
-                    idleTikTok = 0f;
-                    animator.SetInteger("XDir", 0);
-                    GetComponent<Health>().damageCount = 0;
-                    Task.current.Fail();
-                    return;
-                }
-
-                Task.current.Succeed();
-
-            } 
-            Task.current.Fail();      
+            mover.Stop();
+            Task.current.Succeed();
         }
     }
 }

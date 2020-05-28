@@ -72,5 +72,10 @@ PrefabInstance:
       propertyPath: timerEnable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5294662273986045519, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: pencilEnable
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e416676db81df2478c1b790a4db1016, type: 3}

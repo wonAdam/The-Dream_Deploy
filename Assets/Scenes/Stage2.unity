@@ -898,15 +898,5 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1470318747878551396, guid: 0955a5d0bc7e5d84490e59de3be1b333,
-        type: 3}
-      propertyPath: isPlayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1470318747878551396, guid: 0955a5d0bc7e5d84490e59de3be1b333,
-        type: 3}
-      propertyPath: maxHealth
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0955a5d0bc7e5d84490e59de3be1b333, type: 3}

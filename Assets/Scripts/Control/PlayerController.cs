@@ -16,11 +16,10 @@ namespace ADAM.Control
         }
 
         // Update is called once per frame
-        void Update()
+        public void OnClick_ShootBtn()
         {
             
         }
-
         public void ProcessMovement(Vector2 dir)
         {
             dir.Normalize();

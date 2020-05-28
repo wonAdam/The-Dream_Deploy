@@ -16,24 +16,38 @@ namespace ADAM.Combat
         [SerializeField] float blinkingEffectDuration = 2f;
         [SerializeField] bool isPlayer = false;
         [SerializeField] bool isBoss = false;
+        [SerializeField] LayerMask takeDamageLayerMask;
+        [SerializeField] SpriteRenderer ONLY_BossSR;
         public int damageCount = 0;
         public EventObject playerDeadEvent;
         public List<Image> healthUIs;
         public int currHealth;
         SpriteRenderer mySR;
         Rigidbody2D myRb;
+        Collider2D myCol;
         HealthUI healthUI;
 
         void Start()
         {
             currHealth = maxHealth;
-            mySR = GetComponent<SpriteRenderer>();
+            if(gameObject.tag == "Player")
+                mySR = GetComponent<SpriteRenderer>();
+            else if(gameObject.tag == "Enemy")
+            {
+                mySR = ONLY_BossSR;
+            }
             myRb = GetComponent<Rigidbody2D>();
+            myCol = GetComponent<Collider2D>();
             healthUI = FindObjectOfType<HealthUI>();
             if(healthUI != null && isPlayer)
             {
                 healthUI.SetMaxHealth(maxHealth);
             }
+        }
+
+        public bool canBeDamaged()
+        {
+            return damageTakingDelayEnabled; 
         }
 
         public bool TakeDamage(int damage)
@@ -64,17 +78,10 @@ namespace ADAM.Combat
 
                 }
             }
-
-            
-
             return true;
         }
 
-        public void PushedBack(Vector2 attackerPos)
-        {
-            Vector2 dir = (Vector2)transform.position - attackerPos;
-            myRb.AddForce(dir * 200f);
-        }
+
 
         private IEnumerator DamageTakingEffect()
         {
@@ -87,6 +94,26 @@ namespace ADAM.Combat
                 yield return new WaitForSeconds(blinkingEffectDuration / blinkingCount / 2f);
             }
             damageTakingDelayEnabled = true;
+
+
+            ContactFilter2D contactFilter = new ContactFilter2D();
+            contactFilter.layerMask = takeDamageLayerMask;
+            List<Collider2D> result = new List<Collider2D>();
+
+            Debug.Log("Check");
+            if(myCol.OverlapCollider(contactFilter, result) > 0)
+            {
+                Debug.Log("Something inside me");
+                foreach(Collider2D c in result){
+                    Debug.Log(c.gameObject.name);
+                    if(c.GetComponent<Toucher>() != null)
+                    {
+                        Debug.Log("Attacked");
+                        c.GetComponent<Toucher>().Attack(myCol);
+                        break;
+                    }
+                }
+            }
         }
 
 

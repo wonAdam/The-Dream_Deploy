@@ -42,7 +42,13 @@ namespace ADAM.Core
                 return timerEnable;
             }
         }
-
+        [SerializeField] bool pencilEnable = false;
+        public bool PencilEnable{
+            get{
+                return pencilEnable;
+            }
+        }
+        
         FadeOUTIN fadeOUTIN;
         private void Start() {
             fadeOUTIN = FindObjectOfType<FadeOUTIN>();

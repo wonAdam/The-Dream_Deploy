@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace ADAM.Movement
 {
     public class Projectile : MonoBehaviour
     {
         [SerializeField] float destroyAfterFloorCollision = 3f;
         [SerializeField] float speed = 7f;
+        [SerializeField] Sprite[] spriteVariations = null;
         Rigidbody2D myRb;
         float dir = 0f;
         bool velocityEnabled = true;
@@ -26,6 +28,7 @@ namespace ADAM.Movement
                         floors.Add(floorsTmp[j]);
                 }
             }
+            SetRandomSprite();
             SetDir();
             SetRandomProjType();
             SetRandomCollisionFloor();
@@ -34,6 +37,12 @@ namespace ADAM.Movement
         private void Update() {
             if(velocityEnabled)
                 ShootSelf();
+        }
+
+        private void SetRandomSprite()
+        {
+            int index = Random.Range(0, spriteVariations.Length);
+            GetComponent<SpriteRenderer>().sprite = spriteVariations[index];
         }
 
         private void SetDir()
@@ -97,12 +106,15 @@ namespace ADAM.Movement
         private void ShootSelf()
         {
             myRb.velocity = new Vector2(50f * speed * dir * Time.deltaTime, myRb.velocity.y);
-            // 50f * Vector2.right * speed * dir * Time.deltaTime; 
         }
 
         private void OnCollisionEnter2D(Collision2D other) {
             if(other.gameObject.tag == "Floor")
             {
+                if(GetComponent<Animator>() != null)
+                {
+                    GetComponent<Animator>().enabled = false;
+                }
                 velocityEnabled = false;
                 Destroy(gameObject, destroyAfterFloorCollision);
             }

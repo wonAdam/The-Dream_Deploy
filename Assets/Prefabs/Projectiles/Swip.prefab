@@ -145,6 +145,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyAfterFloorCollision: 3
   speed: 6
+  spriteVariations:
+  - {fileID: 8938848258798856446, guid: f42809d343161054f98ce9be914d4410, type: 3}
+  - {fileID: 5203284541755695392, guid: f42809d343161054f98ce9be914d4410, type: 3}
+  - {fileID: 8939997311617931189, guid: f42809d343161054f98ce9be914d4410, type: 3}
   floors: []
 --- !u!114 &2073568937551810347
 MonoBehaviour:

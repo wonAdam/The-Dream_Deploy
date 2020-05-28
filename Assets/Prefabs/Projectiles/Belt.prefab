@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5424276718950298013}
   - component: {fileID: 6423718282347393906}
   - component: {fileID: 3831792539625846664}
+  - component: {fileID: 4013186548221575918}
   m_Layer: 0
   m_Name: Belt
   m_TagString: Projectile
@@ -135,6 +136,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyAfterFloorCollision: 3
   speed: 6
+  spriteVariations:
+  - {fileID: -8900296163447223719, guid: 6d0853001928a9740b08252d2981aaff, type: 3}
+  - {fileID: -4625262318692460968, guid: 6d0853001928a9740b08252d2981aaff, type: 3}
+  - {fileID: 586962353115001452, guid: 6d0853001928a9740b08252d2981aaff, type: 3}
   floors: []
 --- !u!114 &3831792539625846664
 MonoBehaviour:
@@ -149,3 +154,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
+--- !u!95 &4013186548221575918
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5424276718950297984}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 357dbabdc858b8f448521c01cee9d6b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

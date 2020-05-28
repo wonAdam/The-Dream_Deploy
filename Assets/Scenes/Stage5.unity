@@ -1001,11 +1001,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6530011178870688463, guid: 35882c873cb1b654382f6fade92edda3,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
     - target: {fileID: 6530011177744853079, guid: 35882c873cb1b654382f6fade92edda3,
         type: 3}
       propertyPath: handle
@@ -1016,6 +1011,11 @@ PrefabInstance:
       propertyPath: JoystickGO
       value: 
       objectReference: {fileID: 618563423}
+    - target: {fileID: 6530011178870688463, guid: 35882c873cb1b654382f6fade92edda3,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35882c873cb1b654382f6fade92edda3, type: 3}
 --- !u!1001 &7754292131405768730
