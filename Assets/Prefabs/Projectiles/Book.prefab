@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4047485153923119110}
   - component: {fileID: 2829518927484190618}
   - component: {fileID: 1366089880029376035}
+  - component: {fileID: 8432252430135743450}
   m_Layer: 0
   m_Name: Book
   m_TagString: Projectile
@@ -154,3 +155,22 @@ MonoBehaviour:
   - {fileID: -4501117200003901879, guid: bd5b23bb1f2ffb346b063ff5322eae40, type: 3}
   - {fileID: -3035647793191611514, guid: bd5b23bb1f2ffb346b063ff5322eae40, type: 3}
   floors: []
+--- !u!95 &8432252430135743450
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4047485153923119107}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f1a44859e9292e74d806ced4285b9c6e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

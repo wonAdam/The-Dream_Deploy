@@ -10,6 +10,7 @@ namespace ADAM.Movement
         [SerializeField] float speed = 7f;
         [SerializeField] Sprite[] spriteVariations = null;
         Rigidbody2D myRb;
+        Animator myAnim;
         float dir = 0f;
         bool velocityEnabled = true;
         public List<Floor> floors = new List<Floor>();
@@ -17,6 +18,7 @@ namespace ADAM.Movement
 
         private void Start() {
             myRb = GetComponent<Rigidbody2D>();
+            myAnim = GetComponent<Animator>();
             Floor[] floorsTmp = FindObjectsOfType<Floor>();
 
             for(int i = 0 ; i < floorsTmp.Length; i++)

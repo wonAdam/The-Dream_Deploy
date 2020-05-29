@@ -35,5 +35,11 @@ namespace ADAM.Combat
             inst.GetComponent<Pencil>().dir = gun.right;
 
         }
+
+        public void ObtainPencil(int count)
+        {
+            pencilCount += count;
+            pencilUI.UpdatePencilCount(pencilCount);
+        }
     }
 }

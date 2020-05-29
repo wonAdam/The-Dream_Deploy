@@ -44,7 +44,7 @@ namespace ADAM.Combat
         public void PushBack(Rigidbody2D rb)
         {
             Vector2 dir = rb.transform.position - transform.position;
-            rb.AddForce(dir * 200f);
+            rb.AddForce(dir * 120f);
         }
     }
 }

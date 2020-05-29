@@ -10,19 +10,17 @@ namespace ADAM.Combat
 {
     public class Health : MonoBehaviour
     {
+        [SerializeField] public EventObject playerDeadEvent;
         [SerializeField] int maxHealth = 100;
         [SerializeField] bool damageTakingDelayEnabled = true;
-        [SerializeField] int blinkingCount = 20;
         [SerializeField] float blinkingEffectDuration = 2f;
         [SerializeField] bool isPlayer = false;
         [SerializeField] bool isBoss = false;
         [SerializeField] LayerMask takeDamageLayerMask;
-        [SerializeField] SpriteRenderer ONLY_BossSR;
-        public int damageCount = 0;
-        public EventObject playerDeadEvent;
-        public List<Image> healthUIs;
+        private int damageCount = 0;
+        private List<Image> healthUIs;
         public int currHealth;
-        SpriteRenderer mySR;
+        Animator myAnim;
         Rigidbody2D myRb;
         Collider2D myCol;
         HealthUI healthUI;
@@ -30,12 +28,7 @@ namespace ADAM.Combat
         void Start()
         {
             currHealth = maxHealth;
-            if(gameObject.tag == "Player")
-                mySR = GetComponent<SpriteRenderer>();
-            else if(gameObject.tag == "Enemy")
-            {
-                mySR = ONLY_BossSR;
-            }
+            myAnim = GetComponent<Animator>();
             myRb = GetComponent<Rigidbody2D>();
             myCol = GetComponent<Collider2D>();
             healthUI = FindObjectOfType<HealthUI>();
@@ -59,6 +52,7 @@ namespace ADAM.Combat
 
             if(isPlayer)
                 healthUI.UpdateHealthUI(currHealth);
+                
 
             if(isBoss)
             {
@@ -66,6 +60,7 @@ namespace ADAM.Combat
             }
             
 
+            // if this health is dead
             if(currHealth == 0)
             {
                 // Death Process
@@ -86,14 +81,13 @@ namespace ADAM.Combat
         private IEnumerator DamageTakingEffect()
         {
             damageTakingDelayEnabled = false;
-            for(int i = 0 ; i < blinkingCount; i++)
-            {
-                mySR.DOFade(0f, blinkingEffectDuration / blinkingCount / 2f);
-                yield return new WaitForSeconds(blinkingEffectDuration / blinkingCount / 2f);
-                mySR.DOFade(1f, blinkingEffectDuration / blinkingCount / 2f);
-                yield return new WaitForSeconds(blinkingEffectDuration / blinkingCount / 2f);
-            }
+            myAnim.SetTrigger("Damage");
+
+            yield return new WaitForSeconds(blinkingEffectDuration);
+            
             damageTakingDelayEnabled = true;
+            myAnim.SetTrigger("Damage");
+
 
 
             ContactFilter2D contactFilter = new ContactFilter2D();

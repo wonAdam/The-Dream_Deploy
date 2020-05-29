@@ -291,11 +291,12 @@ MonoBehaviour:
   takeDamageLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  ONLY_BossSR: {fileID: 5765251503321734151}
+  ONLY_BossBodySR: {fileID: 5765251503321734151}
   damageCount: 0
   playerDeadEvent: {fileID: 11400000, guid: 9ba2a80de6fa2a249929664f54905d49, type: 2}
   healthUIs: []
   currHealth: 0
+  mySR: {fileID: 0}
 --- !u!114 &1327486742189477297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,8 +322,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d975ebcf92dc36d489f413f6f6bf995b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAI_State: 0
   idleDamageCountCondition: 20
   idleDuration: 2
+  rushToRushDuration_Min: 5
+  rushToRushDuration_Max: 10
+  tikTokUntilRush: 0
   idleTikTok: 0
 --- !u!114 &1292258766456364268
 MonoBehaviour:
