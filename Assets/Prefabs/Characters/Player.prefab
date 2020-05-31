@@ -226,18 +226,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54267e890781d24a80b22fac5869899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDeadEvent: {fileID: 11400000, guid: 9ba2a80de6fa2a249929664f54905d49, type: 2}
   maxHealth: 10
   damageTakingDelayEnabled: 1
-  blinkingCount: 20
   blinkingEffectDuration: 2
   isPlayer: 1
   isBoss: 0
   takeDamageLayerMask:
     serializedVersion: 2
     m_Bits: 454656
-  damageCount: 0
-  playerDeadEvent: {fileID: 11400000, guid: 9ba2a80de6fa2a249929664f54905d49, type: 2}
-  healthUIs: []
+  isFinBoos: 0
   currHealth: 0
 --- !u!114 &1622540533
 MonoBehaviour:
@@ -254,6 +252,9 @@ MonoBehaviour:
   pencil: {fileID: 3456797607278447665, guid: 1f9b2e176dca48c41894b2bed97ae000, type: 3}
   gun: {fileID: 1918811418402865576}
   pencilCount: 10
+  shootDelayDuration: 0.4
+  isShootDelaying: 0
+  tiktokForShootDelay: 0
 --- !u!1 &9104295856728945425
 GameObject:
   m_ObjectHideFlags: 0

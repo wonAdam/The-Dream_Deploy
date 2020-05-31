@@ -8,14 +8,18 @@ namespace ADAM.Combat
         [SerializeField] int damage = 10;
 
         private void OnTriggerStay2D(Collider2D other) {
-            if(other.GetComponent<Health>() != null && other.GetComponent<Health>().canBeDamaged() && other.tag == "Player" && gameObject.tag != "Pencil")
+            if(other.GetComponent<Health>() != null && other.GetComponent<Health>().canBeDamaged() && other.tag == "Player" && gameObject.tag == "Projectile") // projectile logic
             {
                 Attack(other);
             }
-            else if(other.GetComponent<Health>() != null && other.GetComponent<Health>().canBeDamaged() && other.tag != "Player" && gameObject.tag == "Pencil")
+            else if(other.GetComponent<Health>() != null && other.GetComponent<Health>().canBeDamaged() && other.tag == "Enemy" && gameObject.tag == "Pencil")  // pencil logic
             {
                 Attack(other);
             }
+            else if(other.GetComponent<Health>() != null && other.GetComponent<Health>().canBeDamaged() && other.tag == "Player" && gameObject.tag == "Enemy")  // enemy logic
+            {
+                Attack(other);
+            }        
         }
 
         public void Attack(Collider2D other)
@@ -29,11 +33,11 @@ namespace ADAM.Combat
                     PushBack(other.GetComponent<Rigidbody2D>());
                     Destroy(gameObject);
                 }
-                if(this.gameObject.tag == "Enemy")
+                else if(this.gameObject.tag == "Enemy")
                 {
                     PushBack(other.GetComponent<Rigidbody2D>());
                 }
-                if(this.gameObject.tag == "Pencil")
+                else if(this.gameObject.tag == "Pencil")
                 {
                     Destroy(gameObject);                
                 }

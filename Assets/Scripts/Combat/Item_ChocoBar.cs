@@ -4,14 +4,16 @@ using UnityEngine;
 
 namespace ADAM.Combat
 {
-    public class Item_Pencil : MonoBehaviour
+    public class Item_ChocoBar : MonoBehaviour
     {
-        [SerializeField] int pencilObtainCount = 5;
+        [SerializeField] int healAmount = 2;
         [SerializeField] float disappearSec = 10f;
         [SerializeField] float blinkingStartSec = 7f; 
+        float crrTikTok = 0f;
 
-        float crrTikTok = 0f;        
-
+        private void Start() {
+            Destroy(gameObject, disappearSec);
+        }
         private void Update() {
             TikTok();
         }
@@ -28,13 +30,13 @@ namespace ADAM.Combat
             {
                 Destroy(gameObject);
             }
-        }        
-        
-        
+        }
+
+
         private void OnTriggerEnter2D(Collider2D other) {
             if(other.gameObject.tag == "Player")
             {
-                other.GetComponent<Shooter>().ObtainPencil(pencilObtainCount);
+                other.GetComponent<Health>().Heal(healAmount);
                 Destroy(gameObject);
             }
         }

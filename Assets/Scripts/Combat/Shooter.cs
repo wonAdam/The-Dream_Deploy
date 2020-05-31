@@ -13,6 +13,9 @@ namespace ADAM.Combat
         [SerializeField] GameObject pencil;
         [SerializeField] Transform gun;
         [SerializeField] int pencilCount = 0;
+        [SerializeField] float shootDelayDuration = 1.2f;
+        public bool isShootDelaying = false;
+        public float tiktokForShootDelay = 0f;
         PencilUI pencilUI;
         Button shootBtn;
 
@@ -23,13 +26,30 @@ namespace ADAM.Combat
             shootBtn = FindObjectOfType<ShootBtn>().GetComponent<Button>();
             shootBtn.onClick.AddListener(Shoot);
         }
+        private void Update() {
+            if(isShootDelaying)
+                TikTokForShootDelay();
+        }
+
+        private void TikTokForShootDelay()
+        {
+            tiktokForShootDelay += Time.deltaTime;
+
+            if(tiktokForShootDelay >= shootDelayDuration)
+            {
+                tiktokForShootDelay = 0f;
+                isShootDelaying = false;
+            }
+        }
 
         public void Shoot()
         {
             if(pencilCount < 1) return;
+            if(isShootDelaying) return;
 
             pencilCount--;
             pencilUI.UpdatePencilCount(pencilCount);
+            isShootDelaying = true;
 
             GameObject inst = Instantiate(pencil, gun.position, gun.localRotation);
             inst.GetComponent<Pencil>().dir = gun.right;

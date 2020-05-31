@@ -4,7 +4,7 @@ using ADAM.UI;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-
+using ADAM.Movement;
 
 namespace ADAM.Combat
 {
@@ -17,6 +17,9 @@ namespace ADAM.Combat
         [SerializeField] bool isPlayer = false;
         [SerializeField] bool isBoss = false;
         [SerializeField] LayerMask takeDamageLayerMask;
+        [SerializeField] bool isFinBoos = false;
+        private bool blinkingEffectEnable = false;
+        private float currBlinkingTikTok = 0f;
         private int damageCount = 0;
         private List<Image> healthUIs;
         public int currHealth;
@@ -24,6 +27,8 @@ namespace ADAM.Combat
         Rigidbody2D myRb;
         Collider2D myCol;
         HealthUI healthUI;
+        HealthBar healthBar;
+        Mover mover;
 
         void Start()
         {
@@ -31,11 +36,22 @@ namespace ADAM.Combat
             myAnim = GetComponent<Animator>();
             myRb = GetComponent<Rigidbody2D>();
             myCol = GetComponent<Collider2D>();
-            healthUI = FindObjectOfType<HealthUI>();
+            mover = GetComponent<Mover>();
+            if(isPlayer)
+                healthUI = FindObjectOfType<HealthUI>();
+            
+            if(isBoss)
+                healthBar = GetComponentInChildren<HealthBar>();
+
             if(healthUI != null && isPlayer)
             {
                 healthUI.SetMaxHealth(maxHealth);
             }
+        }
+
+        private void Update() {
+            if(blinkingEffectEnable)
+                DamageTakingEffectTikTok();
         }
 
         public bool canBeDamaged()
@@ -48,10 +64,13 @@ namespace ADAM.Combat
             if(!damageTakingDelayEnabled) return false;
 
             currHealth = Mathf.Max(currHealth - damage, 0);
-            StartCoroutine(DamageTakingEffect());
+            currBlinkingTikTok = 0f;
+            blinkingEffectEnable = true;
 
             if(isPlayer)
                 healthUI.UpdateHealthUI(currHealth);
+            if(isBoss)
+                healthBar.SetHealthBarUI(currHealth/(float)maxHealth);
                 
 
             if(isBoss)
@@ -59,6 +78,12 @@ namespace ADAM.Combat
                 damageCount++;
             }
             
+
+            if(isFinBoos && currHealth / (float)maxHealth <= 0.15f)
+            {
+                myAnim.SetBool("Berserker", true);
+                mover.SetMoveSpeed(100f);
+            }
 
             // if this health is dead
             if(currHealth == 0)
@@ -76,39 +101,89 @@ namespace ADAM.Combat
             return true;
         }
 
-
-
-        private IEnumerator DamageTakingEffect()
+        public void Heal(int amount)
         {
-            damageTakingDelayEnabled = false;
-            myAnim.SetTrigger("Damage");
+            currHealth = Mathf.Min(currHealth + amount, maxHealth);
+            if(isPlayer)
+                healthUI.UpdateHealthUI(currHealth);
 
-            yield return new WaitForSeconds(blinkingEffectDuration);
+            if(isBoss)
+                healthBar.SetHealthBarUI(currHealth/(float)maxHealth);
             
-            damageTakingDelayEnabled = true;
-            myAnim.SetTrigger("Damage");
+        }
 
 
+        private void DamageTakingEffectTikTok()
+        {
+            currBlinkingTikTok += Time.deltaTime;
+            myAnim.SetBool("Damage", true);
 
-            ContactFilter2D contactFilter = new ContactFilter2D();
-            contactFilter.layerMask = takeDamageLayerMask;
-            List<Collider2D> result = new List<Collider2D>();
+            if(isPlayer)
+                damageTakingDelayEnabled = false;
 
-            Debug.Log("Check");
-            if(myCol.OverlapCollider(contactFilter, result) > 0)
+            if(currBlinkingTikTok >= blinkingEffectDuration)
             {
-                Debug.Log("Something inside me");
-                foreach(Collider2D c in result){
-                    Debug.Log(c.gameObject.name);
-                    if(c.GetComponent<Toucher>() != null)
-                    {
-                        Debug.Log("Attacked");
-                        c.GetComponent<Toucher>().Attack(myCol);
-                        break;
+                damageTakingDelayEnabled = true;
+                myAnim.SetBool("Damage", false);
+                blinkingEffectEnable = false;
+
+
+                ContactFilter2D contactFilter = new ContactFilter2D();
+                contactFilter.layerMask = takeDamageLayerMask;
+                List<Collider2D> result = new List<Collider2D>();
+
+                Debug.Log("Check");
+                if(myCol.OverlapCollider(contactFilter, result) > 0)
+                {
+                    Debug.Log("Something inside me");
+                    foreach(Collider2D c in result){
+                        Debug.Log(c.gameObject.name);
+                        if(c.GetComponent<Toucher>() != null)
+                        {
+                            Debug.Log("Attacked");
+                            c.GetComponent<Toucher>().Attack(myCol);
+                            break;
+                        }
                     }
                 }
+
             }
         }
+        // private IEnumerator DamageTakingEffect()
+        // {
+        //     if(isPlayer)
+        //         damageTakingDelayEnabled = false;
+
+        //     myAnim.SetBool("Damage", true);
+
+        //     yield return new WaitForSeconds(blinkingEffectDuration);
+            
+        //     myAnim.SetBool("Damage", false);
+
+        //     if(isPlayer)
+        //         damageTakingDelayEnabled = true;
+
+
+
+        //     ContactFilter2D contactFilter = new ContactFilter2D();
+        //     contactFilter.layerMask = takeDamageLayerMask;
+        //     List<Collider2D> result = new List<Collider2D>();
+
+        //     Debug.Log("Check");
+        //     if(myCol.OverlapCollider(contactFilter, result) > 0)
+        //     {
+        //         Debug.Log("Something inside me");
+        //         foreach(Collider2D c in result){
+        //             Debug.Log(c.gameObject.name);
+        //             if(c.GetComponent<Toucher>() != null)
+        //             {
+        //                 Debug.Log("Attacked");
+        //                 c.GetComponent<Toucher>().Attack(myCol);
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
 
 
     }

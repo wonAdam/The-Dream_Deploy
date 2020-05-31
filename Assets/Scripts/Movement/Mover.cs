@@ -34,6 +34,11 @@ namespace ADAM.Movement
             bossAnimController?.UpdateAnimState(dir_normalized);
         }
 
+        public void SetMoveSpeed(float newSpeed)
+        {
+            speed = newSpeed;
+        }
+
         public void Stop()
         {
             myRB.velocity =  Vector2.zero;

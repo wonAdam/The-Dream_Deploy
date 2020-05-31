@@ -57,6 +57,11 @@ namespace ADAM.UI
             timeTxt.text = ((int)currTime).ToString();
         }
 
+        public void ReduceTime(float amount)
+        {
+            currTime = Mathf.Max(currTime - amount, 0f);
+        }
+
         public void StartActing()
         {
             // todo Observer Pattern

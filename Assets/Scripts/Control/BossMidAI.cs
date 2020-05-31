@@ -10,7 +10,7 @@ namespace ADAM.Control
     public class BossMidAI : MonoBehaviour
     {
         public enum AI_STATE{
-            CHASING, RUSHREADY, RUSHING, IDLE
+            CHASING, RUSHREADY, RUSHING, IDLE, SHOOTREADY, SHOOT
         }
         public AI_STATE currentAI_State = AI_STATE.CHASING;
         [SerializeField] int idleDamageCountCondition = 20;
@@ -131,5 +131,6 @@ namespace ADAM.Control
             mover.Stop();
             Task.current.Succeed();
         }
+
     }
 }
