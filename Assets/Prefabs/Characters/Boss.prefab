@@ -591,6 +591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDeadEvent: {fileID: 11400000, guid: 9ba2a80de6fa2a249929664f54905d49, type: 2}
+  bossDeadEvent: {fileID: 11400000, guid: 3596eb727a052eb469f980001aa0a9e2, type: 2}
   maxHealth: 50
   damageTakingDelayEnabled: 1
   blinkingEffectDuration: 2

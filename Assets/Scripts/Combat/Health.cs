@@ -11,6 +11,7 @@ namespace ADAM.Combat
     public class Health : MonoBehaviour
     {
         [SerializeField] public EventObject playerDeadEvent;
+        [SerializeField] public EventObject bossDeadEvent;
         [SerializeField] int maxHealth = 100;
         [SerializeField] bool damageTakingDelayEnabled = true;
         [SerializeField] float blinkingEffectDuration = 2f;
@@ -64,13 +65,35 @@ namespace ADAM.Combat
             if(!damageTakingDelayEnabled) return false;
 
             currHealth = Mathf.Max(currHealth - damage, 0);
-            currBlinkingTikTok = 0f;
-            blinkingEffectEnable = true;
+
 
             if(isPlayer)
                 healthUI.UpdateHealthUI(currHealth);
             if(isBoss)
                 healthBar.SetHealthBarUI(currHealth/(float)maxHealth);
+
+                
+            // if this health is dead
+            if(currHealth == 0)
+            {
+                // Death Process
+                if(isPlayer)
+                {
+                    playerDeadEvent?.OnOccure();
+                    return true;
+                }
+                if(isBoss)
+                {
+                    myAnim.SetBool("Dead", true);
+                    bossDeadEvent.OnOccure();
+                    return true;
+                }
+            }
+
+
+            currBlinkingTikTok = 0f;
+            blinkingEffectEnable = true;
+
                 
 
             if(isBoss)
@@ -85,19 +108,7 @@ namespace ADAM.Combat
                 mover.SetMoveSpeed(100f);
             }
 
-            // if this health is dead
-            if(currHealth == 0)
-            {
-                // Death Process
-                if(isPlayer)
-                {
-                    playerDeadEvent?.OnOccure();
-                }
-                if(isBoss)
-                {
 
-                }
-            }
             return true;
         }
 

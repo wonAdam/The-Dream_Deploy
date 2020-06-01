@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1733653706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5005961190001129785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8be18eeb7948d3429aba943e248b023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: 845ba1c7f214f95408cc0ce1b3c4e5d8, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5005961190001129783}
+        m_MethodName: LoadSceneByIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &865487607993278328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7,10 +36,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1022064332938777637, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5294662273986045505, guid: 7e416676db81df2478c1b790a4db1016,
         type: 3}
       propertyPath: m_Name
       value: 5LevelManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 728192034760473046, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 728192034760473046, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 728192034760473046, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 728192034760473046, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5005961190001129783}
+    - target: {fileID: 728192034760473046, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadSceneByIndex
+      objectReference: {fileID: 0}
+    - target: {fileID: 728192034760473046, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5294662273986045518, guid: 7e416676db81df2478c1b790a4db1016,
         type: 3}
@@ -69,6 +133,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5294662273986045519, guid: 7e416676db81df2478c1b790a4db1016,
         type: 3}
+      propertyPath: stageIndex
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294662273986045519, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: spawningPeriod
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5294662273986045519, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
       propertyPath: timerEnable
       value: 0
       objectReference: {fileID: 0}
@@ -77,5 +151,53 @@ PrefabInstance:
       propertyPath: pencilEnable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5948645677774417612, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948645677774417612, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948645677774417612, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948645677774417612, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5005961190001129783}
+    - target: {fileID: 5948645677774417612, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadSceneByIndex
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948645677774417612, guid: 7e416676db81df2478c1b790a4db1016,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e416676db81df2478c1b790a4db1016, type: 3}
+--- !u!1 &5005961190001129785 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5294662273986045505, guid: 7e416676db81df2478c1b790a4db1016,
+    type: 3}
+  m_PrefabInstance: {fileID: 865487607993278328}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5005961190001129783 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5294662273986045519, guid: 7e416676db81df2478c1b790a4db1016,
+    type: 3}
+  m_PrefabInstance: {fileID: 865487607993278328}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5005961190001129785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1841a47a1dd02e14ead11b43571343ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

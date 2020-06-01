@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5294662273986045518}
   - component: {fileID: 5294662273986045519}
   - component: {fileID: 5948645677774417612}
-  - component: {fileID: 919422475362325997}
   - component: {fileID: 728192034760473046}
+  - component: {fileID: 1022064332938777637}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -54,6 +54,7 @@ MonoBehaviour:
   stageTime: 60
   spawningPeriod: 1.5
   timerEnable: 1
+  pencilEnable: 0
 --- !u!114 &5948645677774417612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,24 +68,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gEvent: {fileID: 11400000, guid: 9ba2a80de6fa2a249929664f54905d49, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &919422475362325997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5294662273986045505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8be18eeb7948d3429aba943e248b023, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gEvent: {fileID: 11400000, guid: 28a3f9bec2124234296501a50726a3c9, type: 2}
   response:
     m_PersistentCalls:
       m_Calls: []
@@ -106,5 +89,34 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1022064332938777637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5294662273986045505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8be18eeb7948d3429aba943e248b023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: 845ba1c7f214f95408cc0ce1b3c4e5d8, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5294662273986045519}
+        m_MethodName: LoadSceneByIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null

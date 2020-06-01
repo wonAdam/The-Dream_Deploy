@@ -25,7 +25,14 @@ namespace ADAM.Control
         private PlayerController playerController;
         public float idleTikTok = 0f;
 
-        private void Start() {
+        // private void Start() {
+        //     animator = GetComponent<Animator>();
+        //     playerController = FindObjectOfType<PlayerController>();
+        //     mover = GetComponent<Mover>();
+
+        //     tikTokUntilRush = Random.Range(rushToRushDuration_Min, rushToRushDuration_Max);
+        // }
+        private void OnEnable() {
             animator = GetComponent<Animator>();
             playerController = FindObjectOfType<PlayerController>();
             mover = GetComponent<Mover>();
@@ -118,17 +125,19 @@ namespace ADAM.Control
         [Task]
         public void MoveTowardPlayer()
         {
+            if(playerController == null) return;
+
             Vector2 dir = playerController.transform.position - transform.position;
             dir.Normalize();
-            mover.MoveTo(dir);
+            mover?.MoveTo(dir);
             Task.current.Succeed();
         }
 
 
-        [Task]
+        [Task]  
         public void Idle()
         {
-            mover.Stop();
+            mover?.Stop();
             Task.current.Succeed();
         }
 

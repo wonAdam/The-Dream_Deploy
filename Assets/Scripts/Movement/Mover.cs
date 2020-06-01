@@ -13,6 +13,10 @@ namespace ADAM.Movement
         private float oringinalSpeed;
 
         private void OnEnable() {
+            speed = oringinalSpeed;
+            myRB = GetComponent<Rigidbody2D>();
+            playerAnimController = GetComponent<PlayerAnimController>();
+            bossAnimController = GetComponent<BossAnimController>();
             oringinalSpeed = speed;
         }
 
@@ -21,14 +25,18 @@ namespace ADAM.Movement
             myRB.velocity = Vector2.zero;
         }
 
-        private void Start() {
+        private void Awake() {
             myRB = GetComponent<Rigidbody2D>();
             playerAnimController = GetComponent<PlayerAnimController>();
             bossAnimController = GetComponent<BossAnimController>();
             oringinalSpeed = speed;
+            
         }
         public void MoveTo(Vector2 dir_normalized)
         {
+            if(dir_normalized == null) return;
+            if(myRB == null) return;
+
             myRB.velocity = dir_normalized * speed * Time.deltaTime;
             playerAnimController?.UpdateAnimState(dir_normalized);
             bossAnimController?.UpdateAnimState(dir_normalized);

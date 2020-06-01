@@ -24,7 +24,7 @@ namespace ADAM.Control
         {
             dir.Normalize();
 
-            myMover.MoveTo(dir);
+            myMover?.MoveTo(dir);
 
         }
     }

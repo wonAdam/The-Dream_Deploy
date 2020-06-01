@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ADAM.Control
 {
-    public class ProjectileSpawner : MonoBehaviour, IEnableByPhase
+    public class ProjectileSpawner : MonoBehaviour
     {
         LevelManager levelManager;
         GameObject[] projectiles;
@@ -72,16 +72,5 @@ namespace ADAM.Control
             isSpawningCoolDownCounting = true;
         }
 
-        public void StartActing()
-        {
-                // todo Observer Pattern
-
-        }
-
-        public void StopActing()
-        {
-                // todo Observer Pattern
-
-        }
     }
 }
