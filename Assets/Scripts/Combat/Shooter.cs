@@ -10,6 +10,7 @@ namespace ADAM.Combat
     public class Shooter : MonoBehaviour
     {
 
+        [SerializeField] AudioClip shootingSound;
         [SerializeField] GameObject pencil;
         [SerializeField] Transform gun;
         [SerializeField] int pencilCount = 0;
@@ -50,6 +51,8 @@ namespace ADAM.Combat
             pencilCount--;
             pencilUI.UpdatePencilCount(pencilCount);
             isShootDelaying = true;
+
+            GetComponent<AudioSource>().PlayOneShot(shootingSound);
 
             GameObject inst = Instantiate(pencil, gun.position, gun.localRotation);
             inst.GetComponent<Pencil>().dir = gun.right;

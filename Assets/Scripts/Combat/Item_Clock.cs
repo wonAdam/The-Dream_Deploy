@@ -7,6 +7,7 @@ namespace ADAM.Combat
 {
     public class Item_Clock : MonoBehaviour
     {
+        [SerializeField] AudioClip obtainSound;
         [SerializeField] float timeReduceAmount = 10f;
         [SerializeField] float disappearSec = 10f;
         [SerializeField] float blinkingStartSec = 7f; 
@@ -38,6 +39,7 @@ namespace ADAM.Combat
         private void OnTriggerEnter2D(Collider2D other) {
             if(other.gameObject.tag == "Player")
             {
+                AudioSource.PlayClipAtPoint(obtainSound,new Vector2(0f,0f));
                 timer.ReduceTime(timeReduceAmount);
                 Destroy(gameObject);
             }

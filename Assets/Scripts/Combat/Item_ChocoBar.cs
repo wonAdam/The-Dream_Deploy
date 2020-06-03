@@ -6,6 +6,7 @@ namespace ADAM.Combat
 {
     public class Item_ChocoBar : MonoBehaviour
     {
+        [SerializeField] AudioClip obtainSound;
         [SerializeField] int healAmount = 2;
         [SerializeField] float disappearSec = 10f;
         [SerializeField] float blinkingStartSec = 7f; 
@@ -36,6 +37,7 @@ namespace ADAM.Combat
         private void OnTriggerEnter2D(Collider2D other) {
             if(other.gameObject.tag == "Player")
             {
+                AudioSource.PlayClipAtPoint(obtainSound,new Vector2(0f,0f));
                 other.GetComponent<Health>().Heal(healAmount);
                 Destroy(gameObject);
             }

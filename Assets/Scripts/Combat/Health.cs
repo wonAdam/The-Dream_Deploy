@@ -10,6 +10,7 @@ namespace ADAM.Combat
 {
     public class Health : MonoBehaviour
     {
+        [SerializeField] AudioClip damageSound;
         [SerializeField] public EventObject playerDeadEvent;
         [SerializeField] public EventObject bossDeadEvent;
         [SerializeField] int maxHealth = 100;
@@ -71,6 +72,8 @@ namespace ADAM.Combat
                 healthUI.UpdateHealthUI(currHealth);
             if(isBoss)
                 healthBar.SetHealthBarUI(currHealth/(float)maxHealth);
+
+            GetComponent<AudioSource>().PlayOneShot(damageSound);
 
                 
             // if this health is dead
