@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class DescriptionMgr : MonoBehaviour
 {
+
+    [SerializeField] string nextSceneName = "Stage1";
     public void OnClick_TouchPanel()
     {
         GetComponent<Animator>().SetTrigger("NextScene");
@@ -18,7 +20,7 @@ public class DescriptionMgr : MonoBehaviour
 
     IEnumerator LoaderCoroutine()
     {
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Stage1", LoadSceneMode.Single);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Single);
         asyncOperation.allowSceneActivation = false;
 
         while(!asyncOperation.isDone)

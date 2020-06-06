@@ -6,12 +6,18 @@ namespace ADAM.Combat
 {
     public class Item_Pencil : MonoBehaviour
     {
+        [SerializeField] Sprite[] sprites;
         [SerializeField] AudioClip obtainSound;
         [SerializeField] int pencilObtainCount = 5;
         [SerializeField] float disappearSec = 10f;
         [SerializeField] float blinkingStartSec = 7f; 
 
         float crrTikTok = 0f;        
+
+        private void Start() {
+            int rand = Random.Range(0,sprites.Length);
+            GetComponentInChildren<SpriteRenderer>().sprite = sprites[rand];
+        }
 
         private void Update() {
             TikTok();

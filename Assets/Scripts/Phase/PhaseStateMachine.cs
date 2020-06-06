@@ -29,6 +29,7 @@ namespace ADAM.Phase
         // Start is called before the first frame update
         void Start()
         {
+
             movers = FindObjectsOfType<Mover>();
             healths = FindObjectsOfType<Health>();
             playerController = FindObjectOfType<PlayerController>();
@@ -38,6 +39,8 @@ namespace ADAM.Phase
             projectileSpawner = FindObjectOfType<ProjectileSpawner>();
             levelManager = FindObjectOfType<LevelManager>();
             coverPanel = FindObjectOfType<CoverPanel>();
+
+            SaveCurrStageProgress();
 
             currPhaseState = new State_Start(movers, playerController, bossMidAI, timer, projectileSpawner, itemSpawner,coverPanel, "Stage " + levelManager.StageIndex);
             currPhaseState.Enter();
@@ -63,6 +66,11 @@ namespace ADAM.Phase
             ChangePhaseState(new State_Clear(movers, healths, playerController, bossMidAI, timer, projectileSpawner, itemSpawner,coverPanel, levelManager));
             curr_en_PhaseState = PHASE_STATE.CLEAR;
 
+        }
+
+        private void SaveCurrStageProgress()
+        {
+            SaveMgr.SaveData(levelManager.StageIndex, SaveMgr.LoadData().midKilled, SaveMgr.LoadData().finKilled);
         }
     }
 

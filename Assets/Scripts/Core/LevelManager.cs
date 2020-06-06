@@ -58,7 +58,39 @@ namespace ADAM.Core
         public void LoadSceneByName(string name)
         {
             StartCoroutine(LoadYourAsyncScene(name));
+
+            if(name == "Stage1")
+            {
+                SaveMgr.SaveData(1);
+            }
+            else if(name == "Stage2")
+            {
+                SaveMgr.SaveData(2);
+            }
+            else if(name == "Stage3")
+            {
+                SaveMgr.SaveData(3);
+            }
+            else if(name == "Stage4")
+            {
+                SaveMgr.SaveData(4, SaveMgr.LoadData().midKilled, SaveMgr.LoadData().finKilled);
+            }
+            else if(name == "Stage5")
+            {
+                SaveMgr.SaveData(5, SaveMgr.LoadData().midKilled, SaveMgr.LoadData().finKilled);
+            }
         }
+
+        public void MidBossKilled()
+        {
+            SaveMgr.SaveData(5, true, SaveMgr.LoadData().finKilled);
+        }
+
+        public void FinBossKilled()
+        {
+            SaveMgr.SaveData(0, SaveMgr.LoadData().midKilled, true);
+        }
+
 
         IEnumerator LoadYourAsyncScene(string name)
         {
