@@ -18,6 +18,7 @@ public class BossAnimController : MonoBehaviour
             if(dir.magnitude < Mathf.Epsilon)
             {
                 myAnim.SetInteger("XDir", 0);
+                myAnim.SetInteger("YDir", 0);
                 return;
             }
             
@@ -25,20 +26,22 @@ public class BossAnimController : MonoBehaviour
             if(angle/90f > -0.5f && angle/90f < 0.5f) // right
             {
                 myAnim.SetInteger("XDir", 1);
+                myAnim.SetInteger("YDir", 0);
             }
             else if(angle/90f > 0.5f && angle/90f < 1.5f) // up
             {       
                 myAnim.SetInteger("XDir", 0);
-
+                myAnim.SetInteger("YDir", 1);
             }
             else if((angle/90f > 1.5f && angle/90f < 2f) || (angle/90f >= -2f && angle/90f < -1.5f)) // left
             {
-    
                 myAnim.SetInteger("XDir", -1);
+                myAnim.SetInteger("YDir", 0);            
             }
             else if(angle/90f < -0.5f && angle/90f > -1.5f) // down
             {       
-                myAnim.SetInteger("XDir", 0);            
+                myAnim.SetInteger("XDir", 0);   
+                myAnim.SetInteger("YDir", -1);            
             }
 
 

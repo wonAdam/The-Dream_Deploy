@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf71892679aa33458d3f415f6adc268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obtainSound: {fileID: 8300000, guid: fbaa06ab5fad7284f8211164b057bb68, type: 3}
+  obtainSound: {fileID: 8300000, guid: 1289b0cce04521b4e99ac5376290e59d, type: 3}
   pencilObtainCount: 10
   disappearSec: 10
   blinkingStartSec: 7

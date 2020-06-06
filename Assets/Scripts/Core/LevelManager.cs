@@ -55,17 +55,17 @@ namespace ADAM.Core
             fadeOUTIN.gameObject.SetActive(false);
         }
 
-        public void LoadSceneByIndex(int index)
+        public void LoadSceneByName(string name)
         {
-            StartCoroutine(LoadYourAsyncScene(index));
+            StartCoroutine(LoadYourAsyncScene(name));
         }
 
-        IEnumerator LoadYourAsyncScene(int index)
+        IEnumerator LoadYourAsyncScene(string name)
         {
 
             fadeOUTIN.gameObject.SetActive(true);
             fadeOUTIN.GetComponent<Image>().color = new Color(0f,0f,0f,0f);
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(index, LoadSceneMode.Single);
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
             asyncLoad.allowSceneActivation = false;
 
             while (!asyncLoad.isDone)

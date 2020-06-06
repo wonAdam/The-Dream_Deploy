@@ -10,7 +10,7 @@ tree("Rush")
 		while IsStateRushReady
 			sequence
 				RushReadyAnimation
-				Wait 1.8
+				Wait 1.6
 				StateToRush
 		while IsStateRushing
 			RushToDestinationPosition

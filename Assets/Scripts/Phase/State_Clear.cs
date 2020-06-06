@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using ADAM.Combat;
 using ADAM.Control;
 using ADAM.Core;
 using ADAM.Movement;
@@ -12,6 +13,7 @@ namespace ADAM.Phase
     public class State_Clear : IPhaseState
     {
         Mover[] movers;
+        Health[] healths;
         PlayerController playerController;
         BossMidAI bossMidAI;
         Timer timer;
@@ -20,12 +22,12 @@ namespace ADAM.Phase
         CoverPanel coverPanel;
         LevelManager levelManager;
         string clearMessage = "Clear ! ";
-        public State_Clear(Mover[] _movers, PlayerController _playerController, BossMidAI _bossMidAI, Timer _timer, ProjectileSpawner _projectileSpawner, 
+        public State_Clear(Mover[] _movers, Health[] _healths, PlayerController _playerController, BossMidAI _bossMidAI, Timer _timer, ProjectileSpawner _projectileSpawner, 
                                 ItemSpawner _itemSpawner, CoverPanel _coverPanel, LevelManager _levelManager)
         {
             movers = _movers; playerController = _playerController; bossMidAI = _bossMidAI;
             timer = _timer; projectileSpawner = _projectileSpawner; coverPanel = _coverPanel;
-            itemSpawner = _itemSpawner; levelManager = _levelManager;
+            itemSpawner = _itemSpawner; levelManager = _levelManager; healths = _healths;
         }
 
         public void Enter()
@@ -33,6 +35,10 @@ namespace ADAM.Phase
             foreach(Mover m in movers)
             {
                 m.enabled = false;
+            }
+            foreach(Health h in healths)
+            {
+                h.enabled = false;
             }
             if(playerController)
                 playerController.enabled = false;
@@ -52,7 +58,8 @@ namespace ADAM.Phase
 
         public void Exit()
         {
-            levelManager.LoadSceneByIndex(SceneManager.GetActiveScene().buildIndex + 1);
+            string name = SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1).name;
+            levelManager.LoadSceneByName(name);
         }
 
         public void Process()

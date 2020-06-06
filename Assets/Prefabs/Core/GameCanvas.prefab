@@ -830,6 +830,27 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!50 &8022852348250340268
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6530011179112168251}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &6530011179406547251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,6 +1138,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ddb24a3567a6b040886eea3b8e7d062, type: 3}
+--- !u!1 &6530011179112168251 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5852422760842815571, guid: 9ddb24a3567a6b040886eea3b8e7d062,
+    type: 3}
+  m_PrefabInstance: {fileID: 840125769626489704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6530011179112168228 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5852422760842815564, guid: 9ddb24a3567a6b040886eea3b8e7d062,

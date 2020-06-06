@@ -64,9 +64,9 @@ namespace ADAM.Combat
         public bool TakeDamage(int damage)
         {
             if(!damageTakingDelayEnabled) return false;
+            if(this.enabled == false) return false;
 
             currHealth = Mathf.Max(currHealth - damage, 0);
-
 
             if(isPlayer)
                 healthUI.UpdateHealthUI(currHealth);

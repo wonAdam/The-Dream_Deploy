@@ -62,6 +62,7 @@ namespace ADAM.Control
         {
             rushDestination = playerController.transform.position;
             animator.SetTrigger("RushReady");
+            animator.ResetTrigger("Rush");
             mover.Stop();
             Task.current.Succeed();
         }
@@ -85,6 +86,7 @@ namespace ADAM.Control
         public void RushToDestinationPosition()
         {
             Vector2 dir_power = rushDestination - (Vector2)transform.position;
+            animator.SetTrigger("Rush");
             mover.MoveTo(dir_power * 10f);
 
             if(dir_power.magnitude <= 0.1f)
