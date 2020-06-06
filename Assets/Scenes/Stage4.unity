@@ -269,7 +269,7 @@ PrefabInstance:
     - target: {fileID: 4651052952049485220, guid: 1d9676e9a80288040986c60406936aa9,
         type: 3}
       propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4651052952049485220, guid: 1d9676e9a80288040986c60406936aa9,
         type: 3}
@@ -284,7 +284,7 @@ PrefabInstance:
     - target: {fileID: 4651052952049485220, guid: 1d9676e9a80288040986c60406936aa9,
         type: 3}
       propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadSceneByIndex
+      value: LoadSceneByName
       objectReference: {fileID: 0}
     - target: {fileID: 4651052952049485220, guid: 1d9676e9a80288040986c60406936aa9,
         type: 3}
@@ -329,7 +329,7 @@ PrefabInstance:
     - target: {fileID: 1737553218788102846, guid: 1d9676e9a80288040986c60406936aa9,
         type: 3}
       propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1737553218788102846, guid: 1d9676e9a80288040986c60406936aa9,
         type: 3}
@@ -344,7 +344,7 @@ PrefabInstance:
     - target: {fileID: 1737553218788102846, guid: 1d9676e9a80288040986c60406936aa9,
         type: 3}
       propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadSceneByIndex
+      value: LoadSceneByName
       objectReference: {fileID: 0}
     - target: {fileID: 1737553218788102846, guid: 1d9676e9a80288040986c60406936aa9,
         type: 3}

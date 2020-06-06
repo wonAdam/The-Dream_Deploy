@@ -5,18 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class StageLoader_Debug : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void LoadToStage1()
     {
@@ -25,21 +13,21 @@ public class StageLoader_Debug : MonoBehaviour
 
     public void LoadToStage2()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Stage2");
     }
 
     public void LoadToStage3()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("Stage3");
     }
 
     public void LoadToStage4()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene("Stage4");
     }
 
     public void LoadToStage5()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene("Stage5");
     }
 }
