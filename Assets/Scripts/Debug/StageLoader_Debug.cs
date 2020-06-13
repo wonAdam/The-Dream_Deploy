@@ -8,7 +8,7 @@ public class StageLoader_Debug : MonoBehaviour
 
     public void LoadToStage1()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Description1");
     }
 
     public void LoadToStage2()
@@ -23,7 +23,7 @@ public class StageLoader_Debug : MonoBehaviour
 
     public void LoadToStage4()
     {
-        SceneManager.LoadScene("Stage4");
+        SceneManager.LoadScene("Description2");
     }
 
     public void LoadToStage5()

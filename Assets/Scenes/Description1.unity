@@ -361,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a723e3f85c0964fa3bb32c71bd798c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneName: Stage1
 --- !u!1 &995471213
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1102344470
 RectTransform:
   m_ObjectHideFlags: 0
@@ -675,7 +676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1473971772
 RectTransform:
   m_ObjectHideFlags: 0
@@ -749,7 +750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1904358223
 RectTransform:
   m_ObjectHideFlags: 0
@@ -789,7 +790,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 2a6aba9b4396c6f4eaf7588d65f05b0c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01f1f96a21988b24fa4c2818ac46755c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
