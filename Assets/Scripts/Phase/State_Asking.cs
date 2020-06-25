@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 namespace ADAM.Phase
 {
-    public class State_Clear : IPhaseState
+    public class State_Asking : IPhaseState
     {
         Mover[] movers;
         Health[] healths;
@@ -19,14 +19,14 @@ namespace ADAM.Phase
         Timer timer;
         ProjectileSpawner projectileSpawner;
         ItemSpawner itemSpawner;
-        CoverPanel coverPanel;
+        BossAskingPanel bossAskingPanel;
         LevelManager levelManager;
         string clearMessage = "Clear ! ";
-        public State_Clear(Mover[] _movers, Health[] _healths, PlayerController _playerController, BossMidAI _bossMidAI, Timer _timer, ProjectileSpawner _projectileSpawner, 
-                                ItemSpawner _itemSpawner, CoverPanel _coverPanel, LevelManager _levelManager)
+        public State_Asking(Mover[] _movers, Health[] _healths, PlayerController _playerController, BossMidAI _bossMidAI, Timer _timer, ProjectileSpawner _projectileSpawner, 
+                                ItemSpawner _itemSpawner, BossAskingPanel _bossAskingPanel, LevelManager _levelManager)
         {
             movers = _movers; playerController = _playerController; bossMidAI = _bossMidAI;
-            timer = _timer; projectileSpawner = _projectileSpawner; coverPanel = _coverPanel;
+            timer = _timer; projectileSpawner = _projectileSpawner; bossAskingPanel = _bossAskingPanel;
             itemSpawner = _itemSpawner; levelManager = _levelManager; healths = _healths;
         }
 
@@ -40,6 +40,7 @@ namespace ADAM.Phase
             {
                 h.enabled = false;
             }
+
             if(playerController)
                 playerController.enabled = false;
             if(bossMidAI)
@@ -51,16 +52,33 @@ namespace ADAM.Phase
             if(itemSpawner)
                 itemSpawner.enabled = false;
 
-            coverPanel.gameObject.SetActive(true);
-            coverPanel.GetComponent<Animator>().SetTrigger("Start");
-            coverPanel.SetText(clearMessage);
+            bossAskingPanel.gameObject.SetActive(true);
+
         }
 
         public void Exit()
         {
-            //SaveMgr.SaveData(levelManager.StageIndex, SaveMgr.LoadData().midKilled, SaveMgr.LoadData().finKilled);
-            string name = SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1).name;
-            levelManager.LoadSceneByName(name);
+            foreach(Mover m in movers)
+            {
+                m.enabled = true;
+            }
+            foreach(Health h in healths)
+            {
+                h.enabled = true;
+            }
+
+            if(playerController)
+                playerController.enabled = true;
+            if(bossMidAI)
+                bossMidAI.enabled = true;
+            if(timer)
+                timer.enabled = true;
+            if(projectileSpawner)
+                projectileSpawner.enabled = true;
+            if(itemSpawner)
+                itemSpawner.enabled = true;        
+
+            bossAskingPanel.gameObject.SetActive(false);
         }
 
         public void Process()

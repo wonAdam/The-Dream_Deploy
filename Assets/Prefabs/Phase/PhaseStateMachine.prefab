@@ -11,8 +11,11 @@ GameObject:
   - component: {fileID: 1548718889728872171}
   - component: {fileID: 1548718889728872172}
   - component: {fileID: 1548718889728872170}
+  - component: {fileID: 7111927465038556370}
+  - component: {fileID: 4790498844698750269}
   - component: {fileID: 7756045251600603345}
   - component: {fileID: 2364064967689008174}
+  - component: {fileID: 1548718888330786857}
   m_Layer: 0
   m_Name: PhaseStateMachine
   m_TagString: Untagged
@@ -46,6 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11e49d0caf978f4596ab5b82f46600e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curr_en_PhaseState: 0
+  bossAskingPanel: {fileID: 0}
 --- !u!114 &1548718889728872170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +64,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gEvent: {fileID: 11400000, guid: c87dd78fc4fb4ff47884c8bb00b50186, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1548718889728872172}
+        m_MethodName: StateToBattle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &7111927465038556370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548718889728872173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8be18eeb7948d3429aba943e248b023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: 0276dc16154939e4d8e6187652823fe9, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1548718889728872172}
+        m_MethodName: StateToClear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &4790498844698750269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548718889728872173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8be18eeb7948d3429aba943e248b023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: 8002d6f1e16427d4297217a7d63560c0, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -102,6 +165,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_MethodName: FinBossKilled
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2364064967689008174
@@ -122,6 +196,35 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1548718889728872172}
         m_MethodName: StateToClear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1548718888330786857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548718889728872173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8be18eeb7948d3429aba943e248b023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gEvent: {fileID: 11400000, guid: 6634566ffe4ce6544a2001da1929ae2f, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1548718889728872172}
+        m_MethodName: StateToAsking
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

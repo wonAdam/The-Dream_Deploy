@@ -13,6 +13,8 @@ namespace ADAM.Combat
         [SerializeField] AudioClip damageSound;
         [SerializeField] public EventObject playerDeadEvent;
         [SerializeField] public EventObject bossDeadEvent;
+        [SerializeField] public EventObject bossAskingTrigger;
+        [SerializeField] private float askingHealthPercent;
         [SerializeField] int maxHealth = 100;
         [SerializeField] bool damageTakingDelayEnabled = true;
         [SerializeField] float blinkingEffectDuration = 2f;
@@ -24,6 +26,7 @@ namespace ADAM.Combat
         private float currBlinkingTikTok = 0f;
         private int damageCount = 0;
         private List<Image> healthUIs;
+        public bool isAsked = false;
         public int currHealth;
         Animator myAnim;
         Rigidbody2D myRb;
@@ -75,6 +78,13 @@ namespace ADAM.Combat
 
             GetComponent<AudioSource>().PlayOneShot(damageSound);
 
+
+            if(isBoss && (currHealth / (float)maxHealth) <= askingHealthPercent && !isAsked){
+
+                isAsked = true;
+                bossAskingTrigger.OnOccure();
+
+            }
                 
             // if this health is dead
             if(currHealth == 0)

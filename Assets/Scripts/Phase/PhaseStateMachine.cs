@@ -12,9 +12,9 @@ namespace ADAM.Phase
     public class PhaseStateMachine : MonoBehaviour
     {
         public enum PHASE_STATE{
-            START, BATTLE, CLEAR
+            START, BATTLE, CLEAR, ASKING
         }
-        PHASE_STATE curr_en_PhaseState = PHASE_STATE.START;
+        public PHASE_STATE curr_en_PhaseState = PHASE_STATE.START;
         Mover[] movers;
         Health[] healths;
         PlayerController playerController;
@@ -24,6 +24,7 @@ namespace ADAM.Phase
         ItemSpawner itemSpawner;
         LevelManager levelManager;
         CoverPanel coverPanel;
+        [SerializeField] private BossAskingPanel bossAskingPanel;
         IPhaseState currPhaseState;
         
         // Start is called before the first frame update
@@ -61,7 +62,7 @@ namespace ADAM.Phase
 
         public void StateToClear()
         {
-            if(curr_en_PhaseState != PHASE_STATE.BATTLE) return;
+            if(curr_en_PhaseState != PHASE_STATE.BATTLE && curr_en_PhaseState != PHASE_STATE.ASKING) return;
             
             ChangePhaseState(new State_Clear(movers, healths, playerController, bossMidAI, timer, projectileSpawner, itemSpawner,coverPanel, levelManager));
             curr_en_PhaseState = PHASE_STATE.CLEAR;
@@ -71,6 +72,13 @@ namespace ADAM.Phase
         private void SaveCurrStageProgress()
         {
             SaveMgr.SaveData(levelManager.StageIndex, SaveMgr.LoadData().midKilled, SaveMgr.LoadData().finKilled);
+        }
+
+        public void StateToAsking(){
+            if(curr_en_PhaseState == PHASE_STATE.ASKING) return;
+            
+            ChangePhaseState(new State_Asking(movers, healths, playerController, bossMidAI, timer, projectileSpawner, itemSpawner, bossAskingPanel, levelManager));
+            curr_en_PhaseState = PHASE_STATE.ASKING;
         }
     }
 
