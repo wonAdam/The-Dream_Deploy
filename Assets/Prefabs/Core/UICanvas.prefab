@@ -2638,6 +2638,7 @@ MonoBehaviour:
   endOfBossAsking_No: {fileID: 11400000, guid: 8002d6f1e16427d4297217a7d63560c0, type: 2}
   endOfBossAsking_Yes: {fileID: 11400000, guid: 0276dc16154939e4d8e6187652823fe9,
     type: 2}
+  paperFlip: {fileID: 8300000, guid: 4f2b7cc01f9a85b42bf417bbe5a78153, type: 3}
   YesOrNo: 0
 --- !u!1001 &1423517512235120190
 PrefabInstance:
@@ -3041,6 +3042,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1524413348505649361}
     m_Modifications:
+    - target: {fileID: 1117356401642504607, guid: 85884d5c7ca949e4594d291721a2c5f8,
+        type: 3}
+      propertyPath: m_Name
+      value: FadeOUTIN
+      objectReference: {fileID: 0}
     - target: {fileID: 1117356401642504592, guid: 85884d5c7ca949e4594d291721a2c5f8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3146,11 +3152,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1117356401642504607, guid: 85884d5c7ca949e4594d291721a2c5f8,
-        type: 3}
-      propertyPath: m_Name
-      value: FadeOUTIN
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85884d5c7ca949e4594d291721a2c5f8, type: 3}
 --- !u!224 &5833626948017859689 stripped
@@ -3166,6 +3167,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1524413348505649361}
     m_Modifications:
+    - target: {fileID: 8298867700909989516, guid: 06d3aba4b8ef17f499e1c47102512c0c,
+        type: 3}
+      propertyPath: m_Name
+      value: HealthPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 8298867700909989519, guid: 06d3aba4b8ef17f499e1c47102512c0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3270,11 +3276,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8298867700909989516, guid: 06d3aba4b8ef17f499e1c47102512c0c,
-        type: 3}
-      propertyPath: m_Name
-      value: HealthPanel
       objectReference: {fileID: 0}
     - target: {fileID: 8298867700909989518, guid: 06d3aba4b8ef17f499e1c47102512c0c,
         type: 3}
