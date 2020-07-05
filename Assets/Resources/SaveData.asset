@@ -15,3 +15,4 @@ MonoBehaviour:
   midKilled: 0
   finKilled: 0
   stageProgress: 0
+  openedEndings: 000000

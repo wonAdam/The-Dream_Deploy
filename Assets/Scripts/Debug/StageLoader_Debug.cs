@@ -30,4 +30,8 @@ public class StageLoader_Debug : MonoBehaviour
     {
         SceneManager.LoadScene("Stage5");
     }
+
+    public void LoadToMain(){
+        SceneManager.LoadScene("MainMenu");
+    }
 }

@@ -12,7 +12,7 @@ namespace ADAM.Phase
     public class PhaseStateMachine : MonoBehaviour
     {
         public enum PHASE_STATE{
-            START, BATTLE, CLEAR, ASKING
+            START, BATTLE, CLEAR, ASKING, GAMEOVER
         }
         public PHASE_STATE curr_en_PhaseState = PHASE_STATE.START;
         Mover[] movers;
@@ -25,6 +25,7 @@ namespace ADAM.Phase
         LevelManager levelManager;
         CoverPanel coverPanel;
         [SerializeField] private BossAskingPanel bossAskingPanel;
+        [SerializeField] public GameObject gameOverPanel;
         IPhaseState currPhaseState;
         
         // Start is called before the first frame update
@@ -79,6 +80,11 @@ namespace ADAM.Phase
             
             ChangePhaseState(new State_Asking(movers, healths, playerController, bossMidAI, timer, projectileSpawner, itemSpawner, bossAskingPanel, levelManager));
             curr_en_PhaseState = PHASE_STATE.ASKING;
+        }
+
+        public void StateToPlayerDead(){
+            ChangePhaseState(new State_PlayerDead(movers, healths, playerController, bossMidAI, timer, projectileSpawner, itemSpawner, gameOverPanel, levelManager));
+            curr_en_PhaseState = PHASE_STATE.GAMEOVER;
         }
     }
 

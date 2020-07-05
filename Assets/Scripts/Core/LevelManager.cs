@@ -49,14 +49,20 @@ namespace ADAM.Core
             }
         }
         
-        FadeOUTIN fadeOUTIN;
+        public FadeOUTIN fadeOUTIN;
+        public GameOverPanel gameOverPanel;
         private void Start() {
             fadeOUTIN = FindObjectOfType<FadeOUTIN>();
             fadeOUTIN.gameObject.SetActive(false);
+            gameOverPanel = FindObjectOfType<GameOverPanel>();
+            gameOverPanel.gameObject.SetActive(false);
         }
 
         public void LoadSceneByName(string name)
         {
+            // name이 Ending 이라면 경과를 검사하여 알맞는 엔딩으로 보내기.
+
+
             StartCoroutine(LoadYourAsyncScene(name));
 
             if(name == "Stage1")
@@ -79,6 +85,10 @@ namespace ADAM.Core
             {
                 SaveMgr.SaveData(5, SaveMgr.LoadData().midKilled, SaveMgr.LoadData().finKilled);
             }
+
+
+            
+            // name이 Ending 이라면 세이브 데이터를 초기화 및 엔딩모음집 열기.
         }
 
         public void MidBossKilled()
@@ -94,16 +104,35 @@ namespace ADAM.Core
 
         IEnumerator LoadYourAsyncScene(string name)
         {
+            if(name == "MainMenu_GO"){
+                gameOverPanel.gameObject.SetActive(true);
+                gameOverPanel.GetComponent<Image>().color = new Color(1f,1f,1f,0f);
+            }
+            else{
+                fadeOUTIN.gameObject.SetActive(true);
+                fadeOUTIN.GetComponent<Image>().color = new Color(0f,0f,0f,0f);
+            }
+            AsyncOperation asyncLoad;
+            if(name != "MainMenu_GO"){
+                asyncLoad = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
+                asyncLoad.allowSceneActivation = false;
+            }
+            else{
+                asyncLoad = SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);
+                asyncLoad.allowSceneActivation = false;
+            }
 
-            fadeOUTIN.gameObject.SetActive(true);
-            fadeOUTIN.GetComponent<Image>().color = new Color(0f,0f,0f,0f);
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
-            asyncLoad.allowSceneActivation = false;
-
+            Debug.Log(asyncLoad.progress);
             while (!asyncLoad.isDone)
             {
-                fadeOUTIN.GetComponent<Image>().color = new Color(0f,0f,0f,asyncLoad.progress);
-                Debug.Log(asyncLoad.progress);
+                if(name == "MainMenu_GO"){
+                    gameOverPanel.GetComponent<Image>().DOFade(1f,3f);
+                    yield return new WaitForSeconds(3f);          
+                }
+                else{
+                    fadeOUTIN.GetComponent<Image>().color = new Color(0f,0f,0f,asyncLoad.progress);
+                    Debug.Log(asyncLoad.progress);                
+                }
 
                 if(asyncLoad.progress >= 0.9f)
                 {

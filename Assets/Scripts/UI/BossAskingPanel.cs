@@ -8,13 +8,20 @@ namespace ADAM.UI{
     {
         [SerializeField] public EventObject endOfBossAsking_No;
         [SerializeField] public EventObject endOfBossAsking_Yes;
+        [SerializeField] AudioClip paperFlip;
         public bool YesOrNo = false;
         Animator myAnim;
         
         private void OnEnable() {
+            AudioSource.PlayClipAtPoint(paperFlip, new Vector3(0f,0f,0f));
             myAnim = GetComponent<Animator>();
             myAnim.SetBool("isAsking", true);
         }
+
+        private void OnDisable() {
+            AudioSource.PlayClipAtPoint(paperFlip, new Vector3(0f,0f,0f));
+        }
+
 
         public void EndOfBossAsking(){
             if(YesOrNo){
