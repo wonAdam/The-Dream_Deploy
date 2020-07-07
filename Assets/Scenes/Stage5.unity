@@ -1013,6 +1013,11 @@ PrefabInstance:
       propertyPath: bossAskingPanel
       value: 
       objectReference: {fileID: 1524413348063843442}
+    - target: {fileID: 1548718889728872172, guid: ef6e94ff90ce1114e9d4e421d5777235,
+        type: 3}
+      propertyPath: sceneNameToLoadAfterClear
+      value: Epilogue_0
+      objectReference: {fileID: 0}
     - target: {fileID: 7756045251600603345, guid: ef6e94ff90ce1114e9d4e421d5777235,
         type: 3}
       propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Target

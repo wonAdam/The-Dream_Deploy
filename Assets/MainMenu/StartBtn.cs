@@ -14,18 +14,13 @@ public class StartBtn : MonoBehaviour
 
     IEnumerator SceneLoad(){
         SaveData saveData = SaveMgr.LoadData();
-        bool isFirstTimePlay = true;
-        foreach(bool opened in saveData.openedEndings){
-            if(opened){
-                isFirstTimePlay = false;
-            }
-        }
-        
-        AsyncOperation asyncOperation;
-        if(isFirstTimePlay)
-            asyncOperation = SceneManager.LoadSceneAsync("Description1");
+        string sceneName;
+        if(saveData.isFirstTimePlay)
+            sceneName = "Description1";
         else
-            asyncOperation = SceneManager.LoadSceneAsync("Stage1");
+            sceneName = "Stage1";
+        
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
 
         asyncOperation.allowSceneActivation = false;
         FadeinOut.gameObject.SetActive(true);

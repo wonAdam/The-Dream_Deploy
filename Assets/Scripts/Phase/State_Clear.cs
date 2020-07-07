@@ -58,9 +58,7 @@ namespace ADAM.Phase
 
         public void Exit()
         {
-            //SaveMgr.SaveData(levelManager.StageIndex, SaveMgr.LoadData().midKilled, SaveMgr.LoadData().finKilled);
-            string name = SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1).name;
-            levelManager.LoadSceneByName(name);
+            
         }
 
         public void Process()

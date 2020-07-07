@@ -39,6 +39,15 @@ namespace ADAM.UI{
             for(int i = 0 ; i < allOtherAS.Length; i++){
                 allOtherAS[i].DOFade(1f, 2f);
             }
+            SaveData saveData = SaveMgr.LoadData();
+            if(saveData.stageProgress == 4){
+                saveData.midKilled = false;
+            }
+            else{
+                saveData.finKilled = false;
+            }
+            SaveMgr.SaveData(saveData);
+
             AudioSource.PlayClipAtPoint(paperFlip,new Vector3(0,0,0), 1f);
             myAnim.SetBool("isAsking", false);
             YesOrNo = true;
@@ -47,6 +56,16 @@ namespace ADAM.UI{
             for(int i = 0 ; i < allOtherAS.Length; i++){
                 allOtherAS[i].DOFade(1f, 2f);
             }
+
+            SaveData saveData = SaveMgr.LoadData();
+            if(saveData.stageProgress == 4){
+                saveData.midKilled = true;
+            }
+            else{
+                saveData.finKilled = true;
+            }
+            SaveMgr.SaveData(saveData);
+
             AudioSource.PlayClipAtPoint(paperFlip, new Vector3(0,0,0), 1f);
             myAnim.SetBool("isAsking", false);
             YesOrNo = false;

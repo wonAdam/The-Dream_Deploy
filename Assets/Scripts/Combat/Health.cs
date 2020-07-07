@@ -115,7 +115,7 @@ namespace ADAM.Combat
             }
             
 
-            if(isFinBoos && currHealth / (float)maxHealth <= 0.15f)
+            if(isFinBoos && currHealth / (float)maxHealth <= 0.2f)
             {
                 myAnim.SetBool("Berserker", true);
                 mover.SetMoveSpeed(100f);

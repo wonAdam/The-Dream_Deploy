@@ -26,6 +26,7 @@ namespace ADAM.Phase
         CoverPanel coverPanel;
         [SerializeField] private BossAskingPanel bossAskingPanel;
         [SerializeField] public GameObject gameOverPanel;
+        [SerializeField] public string sceneNameToLoadAfterClear;
         IPhaseState currPhaseState;
         
         // Start is called before the first frame update
@@ -63,16 +64,15 @@ namespace ADAM.Phase
 
         public void StateToClear()
         {
-            if(curr_en_PhaseState != PHASE_STATE.BATTLE && curr_en_PhaseState != PHASE_STATE.ASKING) return;
-            
+            if(curr_en_PhaseState != PHASE_STATE.BATTLE && curr_en_PhaseState != PHASE_STATE.ASKING) return;   
+
             ChangePhaseState(new State_Clear(movers, healths, playerController, bossMidAI, timer, projectileSpawner, itemSpawner,coverPanel, levelManager));
             curr_en_PhaseState = PHASE_STATE.CLEAR;
-
         }
 
         private void SaveCurrStageProgress()
         {
-            SaveMgr.SaveData(levelManager.StageIndex, SaveMgr.LoadData().midKilled, SaveMgr.LoadData().finKilled);
+            SaveMgr.SaveData(levelManager.StageIndex, SaveMgr.LoadData().midKilled, SaveMgr.LoadData().finKilled, false);
         }
 
         public void StateToAsking(){
