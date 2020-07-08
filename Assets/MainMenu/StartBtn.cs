@@ -14,11 +14,8 @@ public class StartBtn : MonoBehaviour
 
     IEnumerator SceneLoad(){
         SaveData saveData = SaveMgr.LoadData();
-        string sceneName;
-        if(saveData.isFirstTimePlay)
-            sceneName = "Description1";
-        else
-            sceneName = "Stage1";
+        string sceneName = "Prologue";
+
         
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
 
