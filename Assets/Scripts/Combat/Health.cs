@@ -79,6 +79,12 @@ namespace ADAM.Combat
             GetComponent<AudioSource>().PlayOneShot(damageSound);
 
 
+            if(isFinBoos && currHealth / (float)maxHealth <= 0.2f)
+            {
+                myAnim.SetBool("Berserker", true);
+                mover.SetMoveSpeed(100f);
+            }
+
             if(isBoss && (currHealth / (float)maxHealth) <= askingHealthPercent && !isAsked){
 
                 isAsked = true;
@@ -115,11 +121,7 @@ namespace ADAM.Combat
             }
             
 
-            if(isFinBoos && currHealth / (float)maxHealth <= 0.2f)
-            {
-                myAnim.SetBool("Berserker", true);
-                mover.SetMoveSpeed(100f);
-            }
+
 
 
             return true;

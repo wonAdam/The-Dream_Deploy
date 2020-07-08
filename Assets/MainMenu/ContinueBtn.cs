@@ -9,13 +9,16 @@ public class ContinueBtn : MonoBehaviour
 {
     [SerializeField] Image FadeinOut;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        Debug.Log("ContinueBtn Awake");
         if(!SaveMgr.IsSaveExist()){
+            Debug.Log("ContinueBtn Awake isSaveExist");
             SaveMgr.ResetData();
         }
 
         if(SaveMgr.LoadData().stageProgress == 0){
+            Debug.Log("ContinueBtn Awake stageprogrss==0");
             GetComponent<Button>().interactable = false;
         } 
         else{

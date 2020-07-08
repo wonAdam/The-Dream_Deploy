@@ -9,8 +9,9 @@ public class SaveMgr : MonoBehaviour
         SaveData data = new SaveData(midKilled, finKilled, stageProgress, isFirstTimePlay, endingToOpen, endingToClose);
         string JsonData = JsonUtility.ToJson(data);
 
+        Debug.Log(JsonData);
         string path = Path.Combine(Application.persistentDataPath, "save.json");
-        using (FileStream stream = File.Open(path, FileMode.OpenOrCreate))
+        using (FileStream stream = File.Create(path))
         {
 
             byte[] byteData = Encoding.UTF8.GetBytes(JsonData);
@@ -22,14 +23,15 @@ public class SaveMgr : MonoBehaviour
 
             Debug.Log(path + "// save completed");
         }
+
+        
     }
 
     public static void SaveData(SaveData saveData){
         string JsonData = JsonUtility.ToJson(saveData);
-        Debug.Log("SaveData" + JsonData);
 
         string path = Path.Combine(Application.persistentDataPath, "save.json");
-        using (FileStream stream = File.Open(path, FileMode.Create))
+        using (FileStream stream = File.Create(path))
         {
 
             byte[] byteData = Encoding.UTF8.GetBytes(JsonData);
@@ -40,13 +42,17 @@ public class SaveMgr : MonoBehaviour
 
 
             Debug.Log(path + "// save completed");
-        }    
+        }  
+
+
+
     }
 
     public static SaveData LoadData()
     {
 
         string path = Path.Combine(Application.persistentDataPath, "save.json");
+
         using (FileStream stream = File.Open(path, FileMode.Open))
         {
 
@@ -75,8 +81,6 @@ public class SaveMgr : MonoBehaviour
 
     public static void ResetData()
     {
-        SaveData(0, false, false, true ,99, 0);
-        SaveData(0, false, false, true ,99, 1);
-        SaveData(0, false, false, true ,99, 2);
+        SaveData();
     }
 }

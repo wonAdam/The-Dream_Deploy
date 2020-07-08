@@ -1015,7 +1015,7 @@ PrefabInstance:
     - target: {fileID: 8791756017556718689, guid: 494780c01aefdaf499e74573de5cfa15,
         type: 3}
       propertyPath: stageTime
-      value: 130
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 494780c01aefdaf499e74573de5cfa15, type: 3}

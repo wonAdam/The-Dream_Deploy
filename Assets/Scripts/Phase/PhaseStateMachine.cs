@@ -72,7 +72,9 @@ namespace ADAM.Phase
 
         private void SaveCurrStageProgress()
         {
-            SaveMgr.SaveData(levelManager.StageIndex, SaveMgr.LoadData().midKilled, SaveMgr.LoadData().finKilled, false);
+            SaveData saveData = SaveMgr.LoadData();
+            saveData.stageProgress = levelManager.StageIndex;
+            SaveMgr.SaveData(saveData);
         }
 
         public void StateToAsking(){

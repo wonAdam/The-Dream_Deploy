@@ -62,7 +62,7 @@ namespace ADAM.Core
         {
             SaveData saveData = SaveMgr.LoadData();
             // name이 Ending 이라면 경과를 검사하여 알맞는 엔딩으로 보내기.
-            if(stageIndex == 5 && name == "Epilogue_0"){
+            if(name == "Epilogue_0"){
                 
                 saveData.stageProgress = 0;
                 saveData.isFirstTimePlay = false;
@@ -83,23 +83,37 @@ namespace ADAM.Core
 
             if(name == "Stage1")
             {
-                SaveMgr.SaveData(1, false, false, false);
+                saveData.stageProgress = 1;
+                saveData.finKilled = false;
+                saveData.midKilled = false;
+                SaveMgr.SaveData(saveData);
             }
             else if(name == "Stage2")
             {
-                SaveMgr.SaveData(2, false, false, false);
+                saveData.stageProgress = 2;
+                saveData.finKilled = false;
+                saveData.midKilled = false;
+                SaveMgr.SaveData(saveData);
             }
             else if(name == "Stage3")
             {
-                SaveMgr.SaveData(3, false, false, false);
+                saveData.stageProgress = 3;
+                saveData.finKilled = false;
+                saveData.midKilled = false;
+                SaveMgr.SaveData(saveData);
             }
             else if(name == "Stage4")
             {
-                SaveMgr.SaveData(4, SaveMgr.LoadData().midKilled, SaveMgr.LoadData().finKilled, false);
+                saveData.stageProgress = 4;
+                saveData.midKilled = false;
+                saveData.finKilled = false;
+                SaveMgr.SaveData(saveData);
             }
             else if(name == "Stage5")
             {
-                SaveMgr.SaveData(5, SaveMgr.LoadData().midKilled, SaveMgr.LoadData().finKilled, false);
+                saveData.stageProgress = 5;
+                saveData.finKilled = false;
+                SaveMgr.SaveData(saveData);
             }
 
 

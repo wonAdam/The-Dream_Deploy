@@ -19,10 +19,6 @@ public class SaveData {
         finKilled = _finKilled;
         stageProgress = _stageProgress;
         isFirstTimePlay = _isFirstTimePlay;
-        SaveData saveData = SaveMgr.LoadData();
-        for(int i = 0; i < 3; i++){
-            openedEndings[i] = saveData.openedEndings[i];
-        }
 
         if(_openedEndings != 99)
             openedEndings[_openedEndings] = true;
@@ -40,11 +36,6 @@ public class SaveData {
         isFirstTimePlay = _isFirstTimePlay;    
     }
 
-    public void resetEnding(){
-        for(int i = 0 ; i < openedEndings.Length; i++){
-            openedEndings[i] = false;
-        }
-    }
 
 }
 
