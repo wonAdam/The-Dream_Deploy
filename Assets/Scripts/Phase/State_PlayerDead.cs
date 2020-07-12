@@ -19,11 +19,10 @@ namespace ADAM.Phase
         Timer timer;
         ProjectileSpawner projectileSpawner;
         ItemSpawner itemSpawner;
-        GameObject gameOverPanel;
+        GameOverPanel gameOverPanel;
         LevelManager levelManager;
-        string clearMessage = "Clear ! ";
         public State_PlayerDead(Mover[] _movers, Health[] _healths, PlayerController _playerController, BossMidAI _bossMidAI, Timer _timer, ProjectileSpawner _projectileSpawner, 
-                                ItemSpawner _itemSpawner, GameObject _gameOverPanel, LevelManager _levelManager)
+                                ItemSpawner _itemSpawner, GameOverPanel _gameOverPanel, LevelManager _levelManager)
         {
             movers = _movers; playerController = _playerController; bossMidAI = _bossMidAI;
             timer = _timer; projectileSpawner = _projectileSpawner; gameOverPanel = _gameOverPanel;
@@ -50,6 +49,11 @@ namespace ADAM.Phase
                 projectileSpawner.enabled = false;
             if(itemSpawner)
                 itemSpawner.enabled = false;
+
+
+            gameOverPanel.gameObject.SetActive(true);
+            gameOverPanel.GetComponent<Animator>().SetTrigger("Play");
+
         }
 
         public void Exit()

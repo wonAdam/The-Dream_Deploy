@@ -145,7 +145,7 @@ MonoBehaviour:
   sprites:
   - {fileID: -3951740241284949296, guid: a28b04def8c0dfa4e9675268b0788f3d, type: 3}
   - {fileID: -7214274932764091164, guid: a28b04def8c0dfa4e9675268b0788f3d, type: 3}
-  obtainSound: {fileID: 8300000, guid: 1289b0cce04521b4e99ac5376290e59d, type: 3}
+  obtainSound: {fileID: 8300000, guid: 17de7de5c8f643f4a8f1871c33ecbc3f, type: 3}
   pencilObtainCount: 10
   disappearSec: 10
   blinkingStartSec: 7

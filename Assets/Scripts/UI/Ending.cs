@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Ending : MonoBehaviour
 {
     [SerializeField] int endingIndex;
+    [SerializeField] ImFromEndingPanel imFromEndingPanel;
     MainMenuMgr mainMenuMgr;
     public Image myImage;
     public Text myText;
@@ -29,6 +30,8 @@ public class Ending : MonoBehaviour
 
     public void OnClick_Ending(){
         if(isOn){
+            ImFromEndingPanel IFEP = Instantiate(imFromEndingPanel);
+            DontDestroyOnLoad(IFEP.gameObject);
             string sceneName = "Epilogue_0" + endingIndex.ToString();
             mainMenuMgr.LoadTo(sceneName);
         }

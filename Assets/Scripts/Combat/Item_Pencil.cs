@@ -41,7 +41,7 @@ namespace ADAM.Combat
         private void OnTriggerEnter2D(Collider2D other) {
             if(other.gameObject.tag == "Player")
             {
-                AudioSource.PlayClipAtPoint(obtainSound,new Vector2(0f,0f), 1f);
+                AudioSource.PlayClipAtPoint(obtainSound,new Vector2(0f,0f), 0.6f);
                 other.GetComponent<Shooter>().ObtainPencil(pencilObtainCount);
                 Destroy(gameObject);
             }

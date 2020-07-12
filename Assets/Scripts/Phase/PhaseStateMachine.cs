@@ -5,14 +5,16 @@ using ADAM.Control;
 using ADAM.Core;
 using ADAM.Movement;
 using ADAM.UI;
+using DG.Tweening;
 using UnityEngine;
 
 namespace ADAM.Phase
 {
+    // 스테이지 내의 상태(Phase)에 대해 책임집니다.
     public class PhaseStateMachine : MonoBehaviour
     {
         public enum PHASE_STATE{
-            START, BATTLE, CLEAR, ASKING, GAMEOVER
+            START, BATTLE, CLEAR, ASKING, GAMEOVER, ToMain
         }
         public PHASE_STATE curr_en_PhaseState = PHASE_STATE.START;
         Mover[] movers;
@@ -25,7 +27,7 @@ namespace ADAM.Phase
         LevelManager levelManager;
         CoverPanel coverPanel;
         [SerializeField] private BossAskingPanel bossAskingPanel;
-        [SerializeField] public GameObject gameOverPanel;
+        [SerializeField] public GameOverPanel gameOverPanel;
         [SerializeField] public string sceneNameToLoadAfterClear;
         IPhaseState currPhaseState;
         
@@ -42,6 +44,9 @@ namespace ADAM.Phase
             projectileSpawner = FindObjectOfType<ProjectileSpawner>();
             levelManager = FindObjectOfType<LevelManager>();
             coverPanel = FindObjectOfType<CoverPanel>();
+            gameOverPanel = FindObjectOfType<GameOverPanel>();
+            levelManager.gameOverPanel = gameOverPanel;
+            gameOverPanel.gameObject.SetActive(false);
 
             SaveCurrStageProgress();
 
@@ -65,6 +70,10 @@ namespace ADAM.Phase
         public void StateToClear()
         {
             if(curr_en_PhaseState != PHASE_STATE.BATTLE && curr_en_PhaseState != PHASE_STATE.ASKING) return;   
+            AudioSource[] ASs = FindObjectsOfType<AudioSource>();
+            foreach(AudioSource a in ASs){
+                a.DOFade(0f, 1f);
+            }
 
             ChangePhaseState(new State_Clear(movers, healths, playerController, bossMidAI, timer, projectileSpawner, itemSpawner,coverPanel, levelManager));
             curr_en_PhaseState = PHASE_STATE.CLEAR;
@@ -87,7 +96,17 @@ namespace ADAM.Phase
         public void StateToPlayerDead(){
             ChangePhaseState(new State_PlayerDead(movers, healths, playerController, bossMidAI, timer, projectileSpawner, itemSpawner, gameOverPanel, levelManager));
             curr_en_PhaseState = PHASE_STATE.GAMEOVER;
+            AudioSource[] ASs = FindObjectsOfType<AudioSource>();
+            foreach(AudioSource a in ASs){
+                a.DOFade(0f, 1f);
+            }            
         }
+
+        public void StateToToMain(){
+            ChangePhaseState(new State_ToMain(movers, healths, playerController, bossMidAI, timer, projectileSpawner, itemSpawner, coverPanel, levelManager));
+            curr_en_PhaseState = PHASE_STATE.ToMain;
+        }
+
     }
 
 }

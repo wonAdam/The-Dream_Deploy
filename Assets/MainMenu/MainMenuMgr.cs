@@ -8,8 +8,17 @@ using UnityEngine.UI;
 public class MainMenuMgr : MonoBehaviour
 {
     [SerializeField] Image FadeINOUT;
+    EndingBtn endingBtn;
     private void Awake() {
+        ImFromEndingPanel IFEP = FindObjectOfType<ImFromEndingPanel>();
+        if(IFEP != null){
+            endingBtn = FindObjectOfType<EndingBtn>();
+            endingBtn.TurnOnTheEndingPanel();
+            Destroy(IFEP.gameObject);
+        }
         StartCoroutine(FadeIn());
+
+        
     }
 
     IEnumerator FadeIn(){

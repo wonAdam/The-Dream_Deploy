@@ -272,7 +272,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5904e-41, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -391,6 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e2a896208951a46a9fd6870064f2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipBtn: {fileID: 1964450360}
 --- !u!224 &752111708 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8535186779785920157, guid: 145ee6ef5e5d9b440ba8e9179c517bcd,
@@ -839,6 +840,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6275282923448306098, guid: 145ee6ef5e5d9b440ba8e9179c517bcd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 58047051123986470, guid: 145ee6ef5e5d9b440ba8e9179c517bcd,
         type: 3}
@@ -1473,11 +1479,6 @@ PrefabInstance:
     - target: {fileID: 6275282923448306097, guid: 145ee6ef5e5d9b440ba8e9179c517bcd,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6275282923448306098, guid: 145ee6ef5e5d9b440ba8e9179c517bcd,
-        type: 3}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6275282923448306103, guid: 145ee6ef5e5d9b440ba8e9179c517bcd,

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ede3fcc25c7a7e4585b862578eb6feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obtainSound: {fileID: 8300000, guid: bda71e8ef82b93f429c57b9570401bee, type: 3}
+  obtainSound: {fileID: 8300000, guid: 911e0209950c0474a9ad3708155dc76a, type: 3}
   healAmount: 2
   disappearSec: 10
   blinkingStartSec: 7

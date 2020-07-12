@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83156370ca418624d959a05559e951e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obtainSound: {fileID: 8300000, guid: 1289b0cce04521b4e99ac5376290e59d, type: 3}
+  obtainSound: {fileID: 8300000, guid: 17de7de5c8f643f4a8f1871c33ecbc3f, type: 3}
   timeReduceAmount: 10
   disappearSec: 10
   blinkingStartSec: 7

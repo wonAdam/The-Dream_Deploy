@@ -4,8 +4,11 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 namespace ADAM.Core
 {
+
+    // 현재 스테이지에 대한 정보들과 스테이지에서 다른 스테이지로의 로드를 책임집니다.
     public class LevelManager : MonoBehaviour
     {
 
@@ -51,11 +54,15 @@ namespace ADAM.Core
         
         public FadeOUTIN fadeOUTIN;
         public GameOverPanel gameOverPanel;
+        public AudioSource myAS;
         private void Start() {
             fadeOUTIN = FindObjectOfType<FadeOUTIN>();
             fadeOUTIN.gameObject.SetActive(false);
-            gameOverPanel = FindObjectOfType<GameOverPanel>();
-            gameOverPanel.gameObject.SetActive(false);
+            myAS = GetComponent<AudioSource>();
+
+            SaveData saveData = SaveMgr.LoadData();
+            saveData.isFirstTimePlay = false;
+            SaveMgr.SaveData(saveData);
         }
 
         public void LoadSceneByName(string name)
@@ -81,6 +88,21 @@ namespace ADAM.Core
 
             StartCoroutine(LoadYourAsyncScene(name));
 
+            SaveStageProgress(name);
+
+        }
+
+        public void LoadWithoutFade(string name){
+            if(name == "Epilogue_0"){
+                LoadSceneByName(name);
+                return;
+            }
+            SaveStageProgress(name);
+            SceneManager.LoadScene(name);
+        }
+
+        private void SaveStageProgress(string name){
+            SaveData saveData = SaveMgr.LoadData();
             if(name == "Stage1")
             {
                 saveData.stageProgress = 1;
@@ -114,49 +136,26 @@ namespace ADAM.Core
                 saveData.stageProgress = 5;
                 saveData.finKilled = false;
                 SaveMgr.SaveData(saveData);
-            }
-
-
-            
-            // name이 Ending 이라면 세이브 데이터를 초기화 및 엔딩모음집 열기.
+            }        
         }
 
 
         IEnumerator LoadYourAsyncScene(string name)
         {
-            if(name == "MainMenu_GO"){
-                gameOverPanel.gameObject.SetActive(true);
-                gameOverPanel.GetComponent<Image>().color = new Color(1f,1f,1f,0f);
-            }
-            else{
-                fadeOUTIN.gameObject.SetActive(true);
-                fadeOUTIN.GetComponent<Image>().color = new Color(0f,0f,0f,0f);
-            }
-            if(name == "MainMenu_GO") name = "MainMenu";
+            
+            fadeOUTIN.gameObject.SetActive(true);
+            fadeOUTIN.GetComponent<Image>().color = new Color(0f,0f,0f,0f);
+            
 
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
+            AsyncOperation asyncLoad  = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
             asyncLoad.allowSceneActivation = false;
 
-            Debug.Log(asyncLoad.progress);
-            while (!asyncLoad.isDone)
-            {
-                if(name == "MainMenu_GO"){
-                    gameOverPanel.GetComponent<Image>().DOFade(1f,3f);
-                    yield return new WaitForSeconds(3f);          
-                }
-                else{
-                    fadeOUTIN.GetComponent<Image>().color = new Color(0f,0f,0f,asyncLoad.progress);
-                    Debug.Log(asyncLoad.progress);                
-                }
 
-                if(asyncLoad.progress >= 0.9f)
-                {
-                    asyncLoad.allowSceneActivation = true;            
-                }
+            myAS.DOFade(0f, 2f);
 
-                yield return null;
-            }
-
+            fadeOUTIN.GetComponent<Image>().DOFade(1f,3f);   
+            yield return new WaitForSeconds(3f);      
+            asyncLoad.allowSceneActivation = true;       
         }
     }
 }

@@ -36,9 +36,6 @@ namespace ADAM.UI{
         }
 
         public void OnClick_Yes(){
-            for(int i = 0 ; i < allOtherAS.Length; i++){
-                allOtherAS[i].DOFade(1f, 2f);
-            }
             SaveData saveData = SaveMgr.LoadData();
             if(saveData.stageProgress == 4){
                 saveData.midKilled = false;

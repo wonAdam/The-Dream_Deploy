@@ -645,7 +645,7 @@ PrefabInstance:
     - target: {fileID: 4434032323996478171, guid: 90c60a693a1cbcc4f81588cffa59ad2b,
         type: 3}
       propertyPath: items.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4434032323996478171, guid: 90c60a693a1cbcc4f81588cffa59ad2b,
         type: 3}
@@ -669,6 +669,12 @@ PrefabInstance:
       propertyPath: maxSec
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4434032323996478171, guid: 90c60a693a1cbcc4f81588cffa59ad2b,
+        type: 3}
+      propertyPath: items.Array.data[2]
+      value: 
+      objectReference: {fileID: 5259720922954169609, guid: f3755fbbd405e29468b57015ca558294,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90c60a693a1cbcc4f81588cffa59ad2b, type: 3}
 --- !u!1001 &1770185840
@@ -1015,7 +1021,12 @@ PrefabInstance:
     - target: {fileID: 8791756017556718689, guid: 494780c01aefdaf499e74573de5cfa15,
         type: 3}
       propertyPath: stageTime
-      value: 10
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 991430586026050188, guid: 494780c01aefdaf499e74573de5cfa15,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 494780c01aefdaf499e74573de5cfa15, type: 3}

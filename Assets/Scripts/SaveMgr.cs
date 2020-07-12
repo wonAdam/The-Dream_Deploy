@@ -4,29 +4,6 @@ using System.Text;
 
 public class SaveMgr : MonoBehaviour
 {
-    public static void SaveData(int stageProgress = 0, bool midKilled = false, bool finKilled = false, bool isFirstTimePlay = true, int endingToOpen = 99, int endingToClose = 99)
-    {
-        SaveData data = new SaveData(midKilled, finKilled, stageProgress, isFirstTimePlay, endingToOpen, endingToClose);
-        string JsonData = JsonUtility.ToJson(data);
-
-        Debug.Log(JsonData);
-        string path = Path.Combine(Application.persistentDataPath, "save.json");
-        using (FileStream stream = File.Create(path))
-        {
-
-            byte[] byteData = Encoding.UTF8.GetBytes(JsonData);
-
-            stream.Write(byteData, 0, byteData.Length);
-
-            stream.Close();
-
-
-            Debug.Log(path + "// save completed");
-        }
-
-        
-    }
-
     public static void SaveData(SaveData saveData){
         string JsonData = JsonUtility.ToJson(saveData);
 
@@ -43,8 +20,6 @@ public class SaveMgr : MonoBehaviour
 
             Debug.Log(path + "// save completed");
         }  
-
-
 
     }
 
@@ -81,6 +56,6 @@ public class SaveMgr : MonoBehaviour
 
     public static void ResetData()
     {
-        SaveData();
+        SaveData(new SaveData(false, false, 0, true));
     }
 }

@@ -230,6 +230,8 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: 5f9df87a8f323ec4799fe5de329f2d09, type: 3}
   playerDeadEvent: {fileID: 11400000, guid: 9ba2a80de6fa2a249929664f54905d49, type: 2}
   bossDeadEvent: {fileID: 0}
+  bossAskingTrigger: {fileID: 0}
+  askingHealthPercent: 0
   maxHealth: 10
   damageTakingDelayEnabled: 1
   blinkingEffectDuration: 2
@@ -239,6 +241,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 454656
   isFinBoos: 0
+  isAsked: 0
   currHealth: 0
 --- !u!114 &1622540533
 MonoBehaviour:
@@ -271,7 +274,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EndOfPrologue : MonoBehaviour
 {
+    [SerializeField] GameObject skipBtn;
     public void LoadAtEndOfPrologue(){
         SaveData saveData = SaveMgr.LoadData();
 
@@ -13,6 +14,12 @@ public class EndOfPrologue : MonoBehaviour
         }
         else{
             SceneManager.LoadScene("Stage1");
+        }
+    }
+
+    public void DestroySkipBtn(){
+        if(skipBtn != null){
+            Destroy(skipBtn);
         }
     }
 }

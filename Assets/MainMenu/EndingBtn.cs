@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EndingBtn : MonoBehaviour
 {
-    [SerializeField] GameObject endingPanel;
+    [SerializeField] public GameObject endingPanel;
     [SerializeField] AudioClip paperFlip;
     public void OnClick_EndingBtn(){
         AudioSource.PlayClipAtPoint(paperFlip, new Vector3(0f,0f,0f));
@@ -14,5 +14,9 @@ public class EndingBtn : MonoBehaviour
         }else{
             endingPanel.SetActive(true);
         }
+    }
+
+    public void TurnOnTheEndingPanel(){
+        endingPanel.SetActive(true);
     }
 }
