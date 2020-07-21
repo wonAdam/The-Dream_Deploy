@@ -4,7 +4,7 @@
 
 I have worked on this project in 2020 spring semester with ExP Make Team, Hongik Univ. Game Dev Club.
 
-> 출시 링크 : - (coming soon)
+> 출시 링크 : https://play.google.com/store/apps/details?id=com.ExP.TheDream
 
 
 > **2D** / **멀티엔딩** / **슈팅** / **아케이드** / **안드로이드** 게임입니다.
